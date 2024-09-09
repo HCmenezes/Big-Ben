@@ -1,13 +1,19 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="br.com.bigben" version="0.8.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Bigben</name>
-    <description>Disciplina e Facilidade</description>
-    <author email="Bigben.com.br" href="https://BigBen.com.br">
+    <name>BigBen</name>
+    <description>Foco e Disciplina</description>
+    <author email="bigbenmostfocus@gmail.com" href="https://BigBen.com.br">
         Hector França Menezes
+        Gilberto Souza
+        Arthur Jorge
+        Mikaelem ***
+        Douglas ***
     </author>
     <content src="index.html" />
-    <icon src="res/android/icon.jpeg" />
+    <icon src="resourses/icons/android/icon.png" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <preference name="loglevel" value="DEBUG" />
+    <preference name="AndroidWindowSplashScreenAnimatedIcon" value="resourses/screens/android/splash-icon.png" />
+    <preference name="AndroidWindowSplashScreenDuration" value="30000" />
 </widget>

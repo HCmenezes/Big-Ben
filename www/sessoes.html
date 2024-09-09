@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <!-- App root element -->
+    <div id="app">
+
+        <!-- Your main view, should have "view-main" class -->
+        <div class="view view-main">
+            <!-- Initial Page, "data-name" contains page name -->
+            <div data-name="sessoes" class="page">
+
+                <!-- Top Navbar -->
+                <div class="navbar">
+                    <div class="navbar-bg"></div>
+                    <div class="navbar-inner justify-content-center">
+                        <div id="back-arrow" class="link back ripple-inset">
+                            <a href="/index/" data-transition="f7-fade">
+                                <i class="mdi mdi-arrow-left"></i>
+                            </a>
+                        </div>
+                        <div class="title">Lorem ipsum</div>
+                    </div>
+                </div>
+
+                <!-- Manage options -->
+                <div id="Options-Buttons-sessions" class="Options-Buttons">
+                    <a href="">
+                        <div class="Create-Button">
+                            <i class="mdi mdi-timer-plus"></i>
+                            Nova
+                        </div>
+                    </a>
+                    <a href="">
+                        <div class="Edit-Button">
+                            <i class="mdi mdi-timer-edit"></i>
+                            Editar
+                        </div>
+                    </a>
+                    <a href="">
+                        <div class="Delete-Button">
+                            <i class="mdi mdi-timer-minus"></i>
+                            Apagar
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Scrollable page content -->
+                <div id="page-content-sessions" class="page-content">
+                    <div class="block">
+                        
+                        <a href="">
+                            <div class="buttom-session">
+                                <h3>Titulo<br></h3>
+                                <h4>Início: 12/12/2012<br></h4>
+                                <h4>Sessões realizadas: 12 | Tempo total: 12h12min</h4>
+                            </div>
+                        </a>
+                            <a href="">
+                                <div class="buttom-session">
+                                    <h3>Titulo<br></h3>
+                                    <h4>Início: 12/12/2012<br></h4>
+                                    <h4>Sessões realizadas: 12 | Tempo total: 12h12min</h4>
+                                </div>
+                            </a>
+                                <a href="">
+                                    <div class="buttom-session">
+                                        <h3>Titulo<br></h3>
+                                        <h4>Início: 12/12/2012<br></h4>
+                                        <h4>Sessões realizadas: 12 | Tempo total: 12h12min</h4>
+                                    </div>
+                                </a>
+                                <a href="">
+                                    <div class="buttom-session">
+                                        <h3>Titulo<br></h3>
+                                        <h4>Início: 12/12/2012<br></h4>
+                                        <h4>Sessões realizadas: 12 | Tempo total: 12h12min</h4>
+                                    </div>
+                                </a>
+                                <a href="">
+                                    <div class="buttom-session">
+                                        <h3>Titulo<br></h3>
+                                        <h4>Início: 12/12/2012<br></h4>
+                                        <h4>Sessões realizadas: 12 | Tempo total: 12h12min</h4>
+                                    </div>
+                                </a>
+                                <a href="">
+                                    <div class="buttom-session">
+                                        <h3>Titulo<br></h3>
+                                        <h4>Início: 12/12/2012<br></h4>
+                                        <h4>Sessões realizadas: 12 | Tempo total: 12h12min</h4>
+                                    </div>
+                                </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Path to Framework7 Library Bundle JS-->
+    <script type="text/javascript" src="lib/framework7-bundle.min.js"></script>
+	<!-- jQuery -->
+	<script type="text/javascript" src="lib/jquery-3.7.0.min.js"></script>	
+    <!-- Roteamento do app-->
+    <script type="text/javascript" src="js/routes.js"></script>
+    <script src="cordova.js"></script>
+</body>
+
+</html>

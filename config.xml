@@ -10,7 +10,13 @@
         Douglas ***
     </author>
     <content src="index.html" />
-    <icon src="resources/android/icon.jpeg"/>
+    <icon src="resourses/icons/android/icon.png"/>
+
+    <platform name="android">
+    <preference name="AndroidWindowSplashScreenAnimatedIcon" value="resourses/screens/android/splash-icon.png" />
+    <preference name="AndroidWindowSplashScreenDuration" value="30000" /> <!-- Duração da splash screen em milissegundos -->
+    </platform>
+
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
 </widget>

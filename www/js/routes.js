@@ -24,6 +24,7 @@ var app = new Framework7({
 	  on: {
 		pageBeforeIn: function (event, page) {
 		// fazer algo antes da página ser exibida
+    $("#menu-principal").slideDown("fast")
 		},
 		pageAfterIn: function (event, page) {
 		// fazer algo depois da página ser exibida
@@ -73,13 +74,36 @@ var app = new Framework7({
 		// fazer algo antes da página ser removida do DOM
 		},
 	  }
+    },
+    {
+      path: '/sessoes/',
+      url: 'sessoes.html',
+      options: {
+      transition: 'f7-dive',
+      },
+	  on: {
+		pageBeforeIn: function (event, page) {
+		// fazer algo antes da página ser exibida
+    $("#menu-principal").slideUp("fast")
+		},
+		pageAfterIn: function (event, page) {
+		// fazer algo depois da página ser exibida
+		},
+		pageInit: function (event, page) {
+		// fazer algo quando a página for inicializada
+		},
+		pageBeforeRemove: function (event, page) {
+		// fazer algo antes da página ser removida do DOM
+		},
+	  }
     }
   ],
+  
   // ... other parameters
 });
 
 //Para testes direto no navegador
-var mainView = app.views.create('.view-main', { url: '/index/' });
+//var mainView = app.views.create('.view-main', { url: '/index/' });
 
 //EVENTO PARA SABER O ITEM DO MENU ATUAL
 app.on('routeChange', function (route) {

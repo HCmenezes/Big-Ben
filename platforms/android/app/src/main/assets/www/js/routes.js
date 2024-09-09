@@ -4,7 +4,7 @@ var app = new Framework7({
   // App root element
   el: '#app',
   // App Name
-  name: 'My App',
+  name: 'Bigben',
   // App id
   id: 'com.myapp.test',
   // Enable swipe panel
@@ -24,6 +24,7 @@ var app = new Framework7({
 	  on: {
 		pageBeforeIn: function (event, page) {
 		// fazer algo antes da página ser exibida
+    $("#menu-principal").slideDown("fast")
 		},
 		pageAfterIn: function (event, page) {
 		// fazer algo depois da página ser exibida
@@ -37,8 +38,8 @@ var app = new Framework7({
 	  }
     },
     {
-      path: '/link2/',
-      url: 'link2.html',
+      path: '/relatorios/',
+      url: 'relatorios.html',
       animate: false,
 	  on: {
 		pageBeforeIn: function (event, page) {
@@ -56,8 +57,8 @@ var app = new Framework7({
 	  }
     },
     {
-      path: '/link3/',
-      url: 'link3.html',
+      path: '/configuracoes/',
+      url: 'configuracoes.html',
       animate: false,
 	  on: {
 		pageBeforeIn: function (event, page) {
@@ -75,12 +76,15 @@ var app = new Framework7({
 	  }
     },
     {
-      path: '/link4/',
-      url: 'link4.html',
-      animate: false,
+      path: '/sessoes/',
+      url: 'sessoes.html',
+      options: {
+      transition: 'f7-dive',
+      },
 	  on: {
 		pageBeforeIn: function (event, page) {
 		// fazer algo antes da página ser exibida
+    $("#menu-principal").slideUp("fast")
 		},
 		pageAfterIn: function (event, page) {
 		// fazer algo depois da página ser exibida
@@ -94,11 +98,12 @@ var app = new Framework7({
 	  }
     }
   ],
+  
   // ... other parameters
 });
 
 //Para testes direto no navegador
-var mainView = app.views.create('.view-main', { url: '/index/' });
+//var mainView = app.views.create('.view-main', { url: '/index/' });
 
 //EVENTO PARA SABER O ITEM DO MENU ATUAL
 app.on('routeChange', function (route) {
