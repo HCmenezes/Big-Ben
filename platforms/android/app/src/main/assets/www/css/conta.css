@@ -1,0 +1,18 @@
+:root{
+    --vermelho: #e76763;
+    --branco: #ffffff;
+    --cinza: #c5c3c3;
+    --cinza_escuro: #948c8c;
+    --preto: #000000;
+}
+
+.user-img{
+    background: url(../img/user.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 200px;
+    height: 200px;
+    border: solid 3px var(--vermelho);
+    margin-left: 160px;
+    border-radius: 100%;
+}

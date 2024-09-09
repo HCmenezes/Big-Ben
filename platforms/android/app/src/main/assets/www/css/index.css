@@ -1,0 +1,146 @@
+:root{
+    --vermelho: #e76763;
+    --branco: #ffffff;
+    --cinza: #c5c3c3;
+    --cinza_escuro: #948c8c;
+    --preto: #000000;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Radio+Canada:ital,wght@0,300..700;1,300..700&display=swap');
+
+body{
+    font-family: "Radio Canada", sans-serif;
+}
+
+.title{
+    text-align: center;
+}
+
+.Searchbar{
+    padding-top: 20px;
+    padding-bottom: 5px;
+}
+
+.Searchbar #Searchinput{
+    background: var(--cinza);
+    width: 97%;
+    height: 45px;
+    margin-left: 5px;
+    border-radius: 20px;
+}
+
+.Searchbar input{
+    padding-top: 15px;
+    padding-left: 30px;
+    width: 100%;
+    color: #000000;
+}
+
+.Searchbar i{
+    position: absolute;
+    font-size: 20px;
+    font-weight: bold;
+    top: 28px;
+    left: 15px;
+}
+
+#None_Books{
+    color: var(--cinza);
+    font-size: 200px;
+    padding-left: 140px;
+    margin: 0;
+}
+
+#None_Books_text{
+    color: var(--cinza);
+    padding-left: 25px;
+}
+
+.buttom{
+    background: var(--vermelho);
+    margin: 20px;
+    height: 40px;
+    border-radius: 20px;
+    color: var(--branco);
+    padding-top: 10px;
+    text-align: center;
+    font-size: large;
+}
+
+.Options-Buttoms{
+    position: absolute;
+    z-index: 1;
+    top: 600px;
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: flex;
+}
+
+.Create-Buttom, .Edit-Buttom, .Delete-Buttom{
+    display: flex;
+    background: var(--cinza);
+    margin-right: 20px;
+    width: 70px;
+    border-radius: 15px;
+    text-align: center;
+    font-weight: bold;
+    font-size: medium;
+    color: var(--preto);
+    padding: 10px;
+    align-content: center;
+}
+
+.Edit-Buttom{
+    margin-left: 15px;
+}
+
+.Delete-Buttom{
+    width: 80px;
+    margin-left: 3px;
+}
+.Create-Buttom i, .Edit-Buttom i, .Delete-Buttom i{
+    font-weight: bold;
+    font-size: large;
+}
+
+
+/* Framework7 Tags */
+.toolbar{
+    height: 80px;
+}
+
+.tab-link{
+    display: flex;
+    justify-content: center;
+    flex-flow: column wrap;
+    color: rgb(255, 255, 255);
+}
+
+.toolbar-inner{
+    background: var(--vermelho);
+    border-top: 1px solid var(--cinza);
+}
+
+.toolbar-inner .link{    
+    flex:1;
+    height: 80px;  
+    line-height: 25px; 
+	font-weight:bold;   
+    color: var(--preto); 
+}
+
+.toolbar-inner .link:not(.active){
+    color: var(--branco);
+	font-weight:normal;
+}
+
+.toolbar-inner > .link i{
+    font-size: 28px;
+}
+
+.page-content{
+    position: relative;
+    z-index: 0;
+    height: 70%;
+}
