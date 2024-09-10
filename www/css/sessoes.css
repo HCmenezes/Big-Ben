@@ -1,11 +1,3 @@
-:root{
-    --vermelho: #e76763;
-    --branco: #ffffff;
-    --cinza: #c5c3c3;
-    --cinza_escuro: #948c8c;
-    --preto: #000000;
-}
-
 .navbar-inner #back-arrow{
     position: absolute;
     padding-left: 5px;
@@ -34,7 +26,12 @@
     color: var(--branco);
     padding: 10px;
     text-align: left;
+    font-weight: bold;
     font-size: large;
+}
+
+.buttom-session:hover{
+    background: var(--vermelho_escuro);
 }
 
 .buttom-session h4{
@@ -52,4 +49,124 @@
 
 #page-content-sessions{
     height: 92%;
+}
+
+@media (max-width:450px) and (min-width:370px) {
+    #Options-Buttons-sessions{
+        top: 850px;
+    }
+    .Create-Button, .Edit-Button, .Delete-Button{
+        margin-right: 20px;
+        width: 70px;
+        font-size: larger;
+    }
+    .Edit-Button{
+        margin-left: 40px;
+    }
+    .Delete-Button{
+        width: 80px;
+        margin-left: 30px;
+    }
+    .Create-Button i, .Edit-Button i, .Delete-Button i{
+        font-size: larger;
+    }
+}
+
+@media (min-width:540px){
+    #Options-Buttons-sessions{
+        top: 650px;
+    }
+    .Create-Button, .Edit-Button, .Delete-Button{
+        margin-left: 15px;
+        margin-right: 20px;
+        width: 100px;
+        font-size: x-large;
+    }
+    .Edit-Button{
+        margin-left: 40px;
+    }
+    .Delete-Button{
+        width: 120px;
+        margin-left: 30px;
+    }
+    .Create-Button i, .Edit-Button i, .Delete-Button i{
+        font-size: larger;
+    }
+    #page-content-sessions{
+        height: 90%;
+    }
+}
+
+@media (max-width:300px){
+    #Options-Buttons-sessions{
+        top: 600px;
+    }
+    .Create-Button, .Edit-Button, .Delete-Button{
+        margin-left: 0px;
+        margin-right: 20px;
+        width: 50px;
+        font-size: small;
+    }
+    .Edit-Button{
+        margin-left: 3px;
+    }
+    .Delete-Button{
+        width: 56px;
+        margin-left: 3px;
+    }
+    .Create-Button i, .Edit-Button i, .Delete-Button i{
+        font-size: small;
+    }
+    #page-content-sessions{
+        height: 91%;
+    }
+    .buttom-session{
+        font-size: small;
+    }
+}
+
+@media (max-width:360px){
+    #Options-Buttons-sessions{
+        top: 680px;
+    }
+    .Create-Button, .Edit-Button, .Delete-Button{
+        margin-left: 3px;
+        margin-right: 41px;
+        width: 60px;
+        font-size: medium;
+    }
+    .Edit-Button{
+        margin-left: 3px;
+    }
+    .Delete-Button{
+        width: 70px;
+        margin-left: 3px;
+    }
+    .Create-Button i, .Edit-Button i, .Delete-Button i{
+        font-size: medium;
+    }
+    .buttom-session{
+        font-size: medium;
+    }
+}
+
+@media (height:740px){
+    #Options-Buttons-sessions{
+        top: 690px;
+    }
+}
+
+@media (max-height:650px){
+    #Options-Buttons-sessions{
+        top: 605px;
+    }
+    .Create-Button, .Edit-Button, .Delete-Button{
+        margin-left: 0px;
+        margin-right: 26px;
+        width: 60px;
+        font-size: medium;
+    }
+    .Delete-Button{
+        width: 70px;
+    }
 }

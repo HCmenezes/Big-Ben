@@ -44,6 +44,7 @@ var app = new Framework7({
 	  on: {
 		pageBeforeIn: function (event, page) {
 		// fazer algo antes da página ser exibida
+    $("#menu-principal").slideDown("fast")
 		},
 		pageAfterIn: function (event, page) {
 		// fazer algo depois da página ser exibida
@@ -63,6 +64,7 @@ var app = new Framework7({
 	  on: {
 		pageBeforeIn: function (event, page) {
 		// fazer algo antes da página ser exibida
+    $("#menu-principal").slideDown("fast")
 		},
 		pageAfterIn: function (event, page) {
 		// fazer algo depois da página ser exibida
@@ -78,6 +80,94 @@ var app = new Framework7({
     {
       path: '/sessoes/',
       url: 'sessoes.html',
+      options: {
+      transition: 'f7-dive',
+      },
+	  on: {
+		pageBeforeIn: function (event, page) {
+		// fazer algo antes da página ser exibida
+    $("#menu-principal").slideUp("fast")
+		},
+		pageAfterIn: function (event, page) {
+		// fazer algo depois da página ser exibida
+		},
+		pageInit: function (event, page) {
+		// fazer algo quando a página for inicializada
+		},
+		pageBeforeRemove: function (event, page) {
+		// fazer algo antes da página ser removida do DOM
+		},
+	  }
+    },
+    {
+      path: '/cronometro/',
+      url: 'cronometro.html',
+      options: {
+      transition: 'f7-dive',
+      },
+	  on: {
+		pageBeforeIn: function (event, page) {
+		// fazer algo antes da página ser exibida
+    $("#menu-principal").slideUp("fast")
+		},
+		pageAfterIn: function (event, page) {
+		// fazer algo depois da página ser exibida
+		},
+		pageInit: function (event, page) {
+		// fazer algo quando a página for inicializada
+		},
+		pageBeforeRemove: function (event, page) {
+		// fazer algo antes da página ser removida do DOM
+		},
+	  }
+    },
+    {
+      path: '/sobre_app/',
+      url: 'sobre_app.html',
+      options: {
+      transition: 'f7-dive',
+      },
+	  on: {
+		pageBeforeIn: function (event, page) {
+		// fazer algo antes da página ser exibida
+    $("#menu-principal").slideUp("fast")
+		},
+		pageAfterIn: function (event, page) {
+		// fazer algo depois da página ser exibida
+		},
+		pageInit: function (event, page) {
+		// fazer algo quando a página for inicializada
+		},
+		pageBeforeRemove: function (event, page) {
+		// fazer algo antes da página ser removida do DOM
+		},
+	  }
+    },
+    {
+      path: '/acessibilidade/',
+      url: 'acessibilidade.html',
+      options: {
+      transition: 'f7-dive',
+      },
+	  on: {
+		pageBeforeIn: function (event, page) {
+		// fazer algo antes da página ser exibida
+    $("#menu-principal").slideUp("fast")
+		},
+		pageAfterIn: function (event, page) {
+		// fazer algo depois da página ser exibida
+		},
+		pageInit: function (event, page) {
+		// fazer algo quando a página for inicializada
+		},
+		pageBeforeRemove: function (event, page) {
+		// fazer algo antes da página ser removida do DOM
+		},
+	  }
+    },
+    {
+      path: '/idiomas/',
+      url: 'idiomas.html',
       options: {
       transition: 'f7-dive',
       },
