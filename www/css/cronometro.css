@@ -1,0 +1,193 @@
+/* Reseta margens, preenchimentos e define box-sizing para border-box para todos os elementos */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Estilo básico do body */
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f9f9f9; /* Cor de fundo clara */
+}
+
+/* Estilo dos parágrafos */
+p {
+  font-size: medium;
+}
+
+/* Container principal para o conteúdo */
+.container {
+  width: 320px;
+  height: 80vh;
+  margin-top: 30vw; /* Espaçamento superior baseado em viewport width */
+  background-color: white; /* Cor de fundo branca */
+  border-radius: 20px; /* Cantos arredondados */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  padding: 20px; /* Espaçamento interno */
+  text-align: center; /* Centraliza o texto */
+  margin-left: 5vw; /* Espaçamento esquerdo baseado em viewport width */
+}
+
+/* Estilo para o header dentro do container */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Alinha os itens no início do contêiner */
+  margin-bottom: 20px; /* Espaçamento inferior */
+}
+
+/* Estilo para o título principal h1 */
+h1 {
+  font-size: 18px;
+  color: #ff5a5a; /* Cor do texto em vermelho */
+}
+
+/* Estilo para o título secundário h2 */
+h2 {
+  margin-left: -180px; /* Espaçamento negativo à esquerda */
+  font-weight: 530; /* Peso da fonte */
+}
+
+/* Estilo para o título h3 */
+h3 {
+  font-weight: 700; /* Peso da fonte em negrito */
+  font-size: 25px; /* Tamanho da fonte */
+  margin-bottom: -20px; /* Espaçamento negativo inferior */
+}
+
+/* Estilo para o toggle switch */
+.toggle {
+  margin-top: -50px; /* Espaçamento negativo superior */
+  margin-right: -180px; /* Espaçamento negativo à direita */
+}
+
+/* Estilo para o cabeçalho dentro do container */
+.containerheader {
+  display: inline-block; /* Exibe como bloco em linha */
+}
+
+/* Estilo para o rótulo do toggle switch */
+.label {
+  margin-right: -50px; /* Espaçamento negativo à direita */
+}
+
+/* Estilo para o círculo do timer */
+.timer-circle {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%; /* Torna o elemento circular */
+  border: 4px solid green; /* Borda verde */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 20px; /* Centraliza horizontalmente e espaço inferior */
+  margin-top: 5vh; /* Espaçamento superior baseado em viewport height */
+}
+
+/* Estilo para o texto do timer */
+#timer {
+  font-size: 50px; /* Tamanho da fonte */
+  color: #666; /* Cor do texto cinza */
+}
+
+/* Estilo para o botão de play */
+.play-button {
+  background-color: #ff5a5a; /* Cor de fundo vermelha */
+  color: white; /* Cor do texto branca */
+  border: none; /* Remove bordas */
+  border-radius: 50%; /* Torna o botão circular */
+  width: 65px; /* Largura do botão */
+  padding: 20px; /* Espaçamento interno */
+  font-size: 25px; /* Tamanho da fonte */
+  cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
+}
+
+/* Remove o contorno ao focar no botão */
+.play-button:focus {
+  outline: none;
+}
+
+/* Estilo para o footer */
+footer {
+  display: flex;
+  justify-content: space-between; /* Espaça os botões igualmente */
+  margin-top: 20px; /* Espaçamento superior */
+}
+
+/* Estilo para os botões do footer */
+.footer-button {
+  background-color: #666; /* Cor de fundo cinza escuro */
+  color: white; /* Cor do texto branca */
+  border: none; /* Remove bordas */
+  border-radius: 10px; /* Cantos arredondados */
+  padding: 10px 20px; /* Espaçamento interno */
+  font-size: medium; /* Tamanho da fonte */
+  cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
+  width: 35vw; /* Largura baseada em viewport width */
+}
+
+/* Remove o contorno ao focar nos botões do footer */
+.footer-button:focus {
+  outline: none;
+}
+
+/* Importa fonte do Google Fonts */
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+
+/* Adiciona um estilo alternativo para o body em modo escuro */
+body.dark {
+  background: #292c35; /* Cor de fundo escura */
+}
+
+/* Estilo para a caixa de seleção (checkbox) escondida */
+.checkbox {
+  opacity: 0; /* Torna invisível */
+  position: absolute; /* Remove da visualização */
+}
+
+/* Estilo para o rótulo do toggle switch */
+.label {
+  background-color: #ff5a5a; /* Cor de fundo vermelha */
+  border-radius: 50px; /* Cantos arredondados */
+  cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
+  display: flex;
+  justify-content: space-between; /* Espaça os itens igualmente */
+  align-items: center;
+  padding: 5px; /* Espaçamento interno */
+  position: relative; /* Posicionamento relativo */
+  height: 26px; /* Altura do rótulo */
+  width: 50px; /* Largura do rótulo */
+  transform: scale(1.5); /* Aumenta o tamanho */
+}
+
+/* Estilo para a bola dentro do toggle switch */
+.label .ball {
+  background-color: #fff; /* Cor de fundo branca */
+  border-radius: 50%; /* Torna a bola circular */
+  position: absolute; /* Posiciona de forma absoluta */
+  top: 2px; /* Espaçamento superior */
+  left: 2px; /* Espaçamento à esquerda */
+  height: 22px; /* Altura da bola */
+  width: 22px; /* Largura da bola */
+  transform: translateX(0px); /* Inicialmente à esquerda */
+  transition: transform 0.2s linear; /* Transição suave */
+}
+
+/* Move a bola para a direita quando o checkbox está marcado */
+.checkbox:checked + .label .ball {
+  transform: translateX(24px);
+}
+
+/* Estilo para a imagem do Pomodoro */
+.pomoodro {
+  width: 17px; /* Largura da imagem */
+}
+
+/* Estilo para o ícone do timer */
+.mdi-timer-outline {
+  color: #000000; /* Cor do ícone em preto */
+}
