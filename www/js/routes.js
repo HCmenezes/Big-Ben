@@ -24,7 +24,7 @@ var app = new Framework7({
 	  on: {
 		pageBeforeIn: function (event, page) {
 		// fazer algo antes da página ser exibida
-    $("#menu-principal").slideDown("fast")
+    	$("#menu-principal").slideDown("fast")
 		},
 		pageAfterIn: function (event, page) {
 		// fazer algo depois da página ser exibida
@@ -44,7 +44,7 @@ var app = new Framework7({
 	  on: {
 		pageBeforeIn: function (event, page) {
 		// fazer algo antes da página ser exibida
-    $("#menu-principal").slideDown("fast")
+    	$("#menu-principal").slideDown("fast")
 		},
 		pageAfterIn: function (event, page) {
 		// fazer algo depois da página ser exibida
@@ -115,6 +115,23 @@ var app = new Framework7({
 		},
 		pageInit: function (event, page) {
 		// fazer algo quando a página for inicializada
+		// Função para atualizar o cronômetro e o título
+		function updateTimerAndTitle() {
+			var checkbox = document.getElementById('chk');
+			var timerDisplay = document.getElementById('timer');
+			var timerType = document.getElementById('timerType');
+			
+			if (checkbox.checked) {
+				timerDisplay.textContent = '25:00:00';
+				timerType.textContent = 'Pomodoro';
+			} else {
+				timerDisplay.textContent = '00:00:00';
+				timerType.textContent = 'Cronômetro';
+			}
+		}
+		
+		// Adiciona um ouvinte de eventos para a mudança da checkbox
+		document.getElementById('chk').addEventListener('change', updateTimerAndTitle);
 		},
 		pageBeforeRemove: function (event, page) {
 		// fazer algo antes da página ser removida do DOM
