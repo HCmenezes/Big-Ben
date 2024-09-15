@@ -1,9 +1,17 @@
 /* Reseta margens, preenchimentos e define box-sizing para border-box para todos os elementos */
+<<<<<<< HEAD
 /* * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 } */
+=======
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+>>>>>>> 72535e67c2a14fe3d6e43d9ea5eb721c09f64369
 
 /* Estilo básico do body */
 body {
