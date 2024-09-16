@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Include any necessary CSS or meta tags here -->
+    <style>
+        /* Adicione qualquer estilo necessário aqui */
+    </style>
+</head>
+
+<body>
+    <!-- App root element -->
+    <div id="app">
+
+        <!-- Main view container, should have "view-main" class -->
+        <div class="view view-main">
+            <!-- Initial Page, "data-name" contains page name -->
+            <div data-name="cronometro" class="page">
+                
+                <!-- Top Navbar -->
+                <div class="navbar">
+                    <div class="navbar-bg"></div>
+                    <div class="navbar-inner justify-content-center">
+                        <div id="back-arrow" class="link back ripple-inset">
+                            <!-- Back navigation link -->
+                            <a href="/sessoes/" data-transition="f7-fade">
+                                <i class="mdi mdi-arrow-left"></i>
+                            </a>
+                        </div>
+                        <!-- Page title -->
+                        <div class="title">Nota</div>
+                    </div>
+                </div>
+
+                <!-- Main content container -->
+                <div class="container">
+                    <header>
+                        <!-- Header section, currently empty -->
+                    </header>
+            
+                    <main>
+                        <!-- Main content -->
+                        <div class="text-editor text-editor-init" id="my-text-editor" data-placeholder="Enter text..."
+                        data-buttons='[["bold", "italic", "underline", "strikeThrough"], ["orderedList", "unorderedList"]]'>
+                            <div class="text-editor-content" contenteditable></div>
+                      </div>
+                    </main>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Path to Framework7 Library Bundle JS -->
+    <script type="text/javascript" src="lib/framework7-bundle.min.js"></script>
+    
+    <!-- jQuery Library -->
+    <script type="text/javascript" src="lib/jquery-3.7.0.min.js"></script>    
+
+    <!-- App routing script -->
+    <script type="text/javascript" src="js/routes.js"></script>
+    
+    <!-- Cordova script -->
+    <script src="cordova.js"></script>
+        <!-- Custom script -->
+        <script>                                   
+            // Inicializando o editor de texto
+            var editor = app.textEditor.create({
+                el: '#my-text-editor',
+                mode: 'toolbar', // Modo do editor (toolbar)
+                value: '', // Conteúdo inicial
+                buttons: ['bold', 'italic', 'underline', 'strikeThrough', 'link'], // Botões disponíveis
+                placeholder: 'Escreva suas notas aqui...',
+             });
+        </script>
+</body>
+
+</html>
