@@ -70,10 +70,12 @@
             
                     <footer>
                         <!-- Footer buttons -->
-                        <button class="footer-button">
-                            <i class="mdi mdi-notebook"></i>
-                            Bloco de Notas
-                        </button>
+                        <a href="/bloco_notas/">
+                            <button class="footer-button">
+                                <i class="mdi mdi-notebook"></i>
+                                Bloco de Notas
+                            </button>
+                        </a>
                         <button class="footer-button">
                             <i class="mdi mdi-paperclip"></i>
                             Anexos
@@ -95,27 +97,6 @@
     
     <!-- Cordova script -->
     <script src="cordova.js"></script>
-        <!-- Custom script -->
-        <script>
-           
-            // Função para atualizar o cronômetro e o título
-            function updateTimerAndTitle() {
-                var checkbox = document.getElementById('chk');
-                var timerDisplay = document.getElementById('timer');
-                var timerType = document.getElementById('timerType');
-                
-                if (checkbox.checked) {
-                    timerDisplay.textContent = '25:00';
-                    timerType.textContent = 'Pomodoro';
-                } else {
-                    timerDisplay.textContent = '00:00:00';
-                    timerType.textContent = 'Cronômetro';
-                }
-            }
-            
-            // Adiciona um ouvinte de eventos para a mudança da checkbox
-            document.getElementById('chk').addEventListener('change', updateTimerAndTitle);
-        </script>
 </body>
 
 </html>

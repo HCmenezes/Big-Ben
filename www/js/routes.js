@@ -20,7 +20,6 @@ var app = new Framework7({
     {
       path: '/index/',
       url: 'index.html',
-      animate: false,
 	  on: {
 		pageBeforeIn: function (event, page) {
 		// fazer algo antes da página ser exibida
@@ -31,7 +30,7 @@ var app = new Framework7({
 		},
 		pageInit: function (event, page) {
 		// fazer algo quando a página for inicializada
-		
+		// app.views.main.router.navigate("/acessibilidade/")
 		},
 		pageBeforeRemove: function (event, page) {
 		// fazer algo antes da página ser removida do DOM
@@ -41,7 +40,9 @@ var app = new Framework7({
     {
       path: '/relatorios/',
       url: 'relatorios.html',
-      animate: false,
+      options: {
+      transition: 'f7-dive',
+      },
 	  on: {
 		pageBeforeIn: function (event, page) {
 		// fazer algo antes da página ser exibida
@@ -61,7 +62,9 @@ var app = new Framework7({
     {
       path: '/configuracoes/',
       url: 'configuracoes.html',
-      animate: false,
+      options: {
+      transition: 'f7-dive',
+      },
 	  on: {
 		pageBeforeIn: function (event, page) {
 		// fazer algo antes da página ser exibida
@@ -133,6 +136,57 @@ var app = new Framework7({
 		
 		// Adiciona um ouvinte de eventos para a mudança da checkbox
 		document.getElementById('chk').addEventListener('change', updateTimerAndTitle);
+		},
+		pageBeforeRemove: function (event, page) {
+		// fazer algo antes da página ser removida do DOM
+		},
+	  }
+    },
+	{
+		path: '/bloco_notas/',
+		url: 'bloco_notas.html',
+		options: {
+      transition: 'f7-dive',
+      },
+		on: {
+		  pageBeforeIn: function (event, page) {
+		  // fazer algo antes da página ser exibida
+	  $("#menu-principal").slideUp("fast")
+		  },
+		  pageAfterIn: function (event, page) {
+		  // fazer algo depois da página ser exibida
+		  },
+		  pageInit: function (event, page) {
+		  // fazer algo quando a página for inicializada
+		  },
+		  pageBeforeRemove: function (event, page) {
+		  // fazer algo antes da página ser removida do DOM
+		  },
+		}
+	  },
+		{
+      path: '/nota/',
+      url: 'nota.html',
+      options: {
+      transition: 'f7-dive',
+      },
+	  on: {
+		pageBeforeIn: function (event, page) {
+		// fazer algo antes da página ser exibida
+    $("#menu-principal").slideUp("fast")
+		},
+		pageAfterIn: function (event, page) {
+		// fazer algo depois da página ser exibida
+		},
+		pageInit: function (event, page) {
+		// fazer algo quando a página for inicializada
+		var editor = app.textEditor.create({
+			el: '#my-text-editor',
+			mode: 'toolbar', // Modo do editor (toolbar)
+			value: '', // Conteúdo inicial
+			buttons: ['bold', 'italic', 'underline', 'strikeThrough', 'link'], // Botões disponíveis
+			placeholder: 'Escreva suas notas aqui...',
+		 });
 		},
 		pageBeforeRemove: function (event, page) {
 		// fazer algo antes da página ser removida do DOM
