@@ -1,0 +1,174 @@
+:root {
+  --vermelho: #e76763;
+  --vermelho_escuro: #ec4c47;
+  --ripple: #f50800;
+  --branco: #ffffff;
+  --cinza: #c5c3c3;
+  --cinza_escuro: #948c8c;
+  --preto: #000000;
+  --verde: #01b301;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--cinza);
+}
+
+p {
+  font-size: medium;
+}
+
+.container {
+  width: 280px;
+  height: 80vh;
+  margin-top: 30vw;
+  background-color: var(--branco);
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  margin-left: 5vw;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 18px;
+  color: var(--vermelho);
+}
+
+h2 {
+  margin-left: -180px;
+  font-weight: 530;
+  margin-bottom: -120px;
+}
+
+h3 {
+  font-weight: 700;
+  font-size: 25px;
+  margin-bottom: -20px;
+}
+
+.toggle {
+  margin-bottom: -180px;
+  margin-right: -180px;
+}
+
+.containerheader {
+  display: inline-block;
+  margin-bottom: 40px;
+}
+
+.cronometro {
+  margin-top: -90px;
+}
+
+.label {
+  background-color: var(--vermelho);
+  border-radius: 50px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  position: relative;
+  height: 16px;
+  width: 40px;
+  transform: scale(1.5);
+}
+
+.label .ball {
+  background-color: var(--branco);
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  height: 22px;
+  width: 22px;
+  transform: translateX(0px);
+  transition: transform 0.2s linear;
+}
+
+.checkbox:checked + .label .ball {
+  transform: translateX(24px);
+}
+
+.timer-circle {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  border: 4px solid var(--verde);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 20px;
+  margin-top: 5vh;
+}
+
+#timer {
+  font-size: 50px;
+  color: var(--cinza_escuro);
+}
+
+.play-button {
+  background-color: var(--vermelho);
+  color: var(--branco);
+  border: none;
+  border-radius: 50%;
+  width: 65px;
+  padding: 20px;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.play-button:focus {
+  outline: none;
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.footer-button {
+  background-color: var(--cinza_escuro);
+  color: var(--branco);
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: medium;
+  cursor: pointer;
+  width: 35vw;
+}
+
+.footer-button:focus {
+  outline: none;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+
+body.dark {
+  background: var(--preto);
+}
+
+.checkbox {
+  opacity: 0;
+  position: absolute;
+}
+
+.pomoodro {
+  width: 17px;
+}
+
+.mdi-timer-outline {
+  color: var(--preto);
+}

@@ -6,6 +6,7 @@
     --cinza: #c5c3c3;
     --cinza_escuro: #948c8c;
     --preto: #000000;
+    --verde: #01b301;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Radio+Canada:ital,wght@0,300..700;1,300..700&display=swap');
@@ -118,6 +119,7 @@ body{
 /* Framework7 Tags */
 .toolbar{
     height: 80px;
+    position: relative;
 }
 
 .tab-link{

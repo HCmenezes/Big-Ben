@@ -8,41 +8,46 @@
         <!-- Your main view, should have "view-main" class -->
         <div class="view view-main">
             <!-- Initial Page, "data-name" contains page name -->
-            <div data-name="configuracoes" class="page">
+            <div data-name="idiomas" class="page">
 
                 <!-- Top Navbar -->
                 <div class="navbar">
                     <div class="navbar-bg"></div>
                     <div class="navbar-inner justify-content-center">
-                        <div class="title ">Opções de Configuração</div>
+                        <div id="back-arrow" class="link back ripple-inset">
+                            <a href="/configuracoes/" data-transition="f7-fade">
+                                <i class="mdi mdi-arrow-left"></i>
+                            </a>
+                        </div>
+                        <div class="title">Idiomas</div>
                     </div>
                 </div>
 
                 <!-- Scrollable page content -->
                 <div class="page-content">
                     <div class="block">
-                        <a href="/idiomas/">
-                            <div class="buttom">
-                                <i class="mdi mdi-web-box"></i>
-                                Idiomas
+                        <a href="">
+                            <div id="language_btn" class="buttom">
+                                <img src="img/idiomas/pt-br.png" alt="Bandeira Brasil">
+                                Português BR
                             </div>
                         </a>
-                            <a href="/acessibilidade/">
-                                <div class="buttom">
-                                    <i class="mdi mdi-wrench"></i>
-                                    Acessibilidade
+                            <a href="">
+                                <div id="language_btn" class="buttom">
+                                    <img src="img/idiomas/pt-pt.png" alt="">
+                                    Português PT
                                 </div>
                             </a>
-                                <a href="/sobre_app/">
-                                    <div class="buttom">
-                                        <i class="mdi mdi-information-outline"></i>
-                                        Sobre o aplicativo
+                                <a href="">
+                                    <div id="language_btn" class="buttom">
+                                        <img src="img/idiomas/eng-us.png" alt="">
+                                        Inglês US
                                     </div>
                                 </a>
-                                <a href="/ajuda/">
-                                    <div class="buttom">
-                                        <i class="mdi mdi-help-circle-outline"></i>
-                                        Manual de ajuda
+                                <a href="">
+                                    <div id="language_btn" class="buttom">
+                                        <img src="img/idiomas/spain.png" alt="">
+                                        Español
                                     </div>
                                 </a>
                     </div>

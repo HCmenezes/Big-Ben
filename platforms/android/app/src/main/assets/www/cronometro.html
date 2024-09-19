@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Include any necessary CSS or meta tags here -->
+    <style>
+        /* Adicione qualquer estilo necessário aqui */
+    </style>
+</head>
+
+<body>
+    <!-- App root element -->
+    <div id="app">
+
+        <!-- Main view container, should have "view-main" class -->
+        <div class="view view-main">
+            <!-- Initial Page, "data-name" contains page name -->
+            <div data-name="cronometro" class="page">
+                
+                <!-- Top Navbar -->
+                <div class="navbar">
+                    <div class="navbar-bg"></div>
+                    <div class="navbar-inner justify-content-center">
+                        <div id="back-arrow" class="link back ripple-inset">
+                            <!-- Back navigation link -->
+                            <a href="/sessoes/" data-transition="f7-fade">
+                                <i class="mdi mdi-arrow-left"></i>
+                            </a>
+                        </div>
+                        <!-- Page title -->
+                        <div class="title">Cronômetro</div>
+                    </div>
+                </div>
+
+                <!-- Main content container -->
+                <div class="container">
+                    <header>
+                        <!-- Header section, currently empty -->
+                    </header>
+            
+                    <main>
+                        <!-- Main content -->
+                        <div class="cronometro">
+                            <div class="containerheader">
+                                <!-- Header inside the main content -->
+                                <h2>Dev web</h2>
+                                <!-- Toggle switch -->
+                                <div class="toggle">
+                                    <input type="checkbox" class="checkbox" id="chk" />
+                                    <label class="label" for="chk">
+                                      <!-- Toggle switch visuals -->
+                                      <img class="pomoodro" src="img/pomodoro.png" alt="">
+                                      <i class="mdi mdi-timer-outline"></i>
+                                      <div class="ball"></div>
+                                    </label>
+                                  </div>
+                            </div>
+                            <!-- Timer type display -->
+                            <h3 id="timerType">Cronômetro</h3>
+                                
+                            <!-- Timer display -->
+                            <div class="timer-circle">
+                                <span id="timer">00:00:00</span>
+                            </div>
+                            <!-- Play button -->
+                            <button class="play-button">▶</button>
+                            <p>Continuar</p>
+                        </div>
+                    </main>
+            
+                    <footer>
+                        <!-- Footer buttons -->
+                        <a href="/bloco_notas/">
+                            <button class="footer-button">
+                                <i class="mdi mdi-notebook"></i>
+                                Bloco de Notas
+                            </button>
+                        </a>
+                        <button class="footer-button">
+                            <i class="mdi mdi-paperclip"></i>
+                            Anexos
+                        </button>
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Path to Framework7 Library Bundle JS -->
+    <script type="text/javascript" src="lib/framework7-bundle.min.js"></script>
+    
+    <!-- jQuery Library -->
+    <script type="text/javascript" src="lib/jquery-3.7.0.min.js"></script>    
+
+    <!-- App routing script -->
+    <script type="text/javascript" src="js/routes.js"></script>
+    
+    <!-- Cordova script -->
+    <script src="cordova.js"></script>
+</body>
+
+</html>

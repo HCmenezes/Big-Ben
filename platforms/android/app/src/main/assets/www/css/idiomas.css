@@ -1,0 +1,12 @@
+#language_btn{
+    height: 45px;
+    position: relative;
+    padding-top: 20px;
+}
+
+#language_btn img{
+    width: 30px;
+    position: absolute;
+    left: 40px;
+    top: 17px;
+}
