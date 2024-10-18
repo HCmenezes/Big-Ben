@@ -19,7 +19,9 @@ body {
     height: 100vh;
 }
 
-.container {
+.container1 {
+    margin-top: 10vh;
+    margin-left: 8vw;
     width: 300px;
     padding: 20px;
     background-color: var(--branco);

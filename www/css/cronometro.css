@@ -120,7 +120,6 @@ footer {
 
 /* Estilo para os botões do footer */
 .footer-button {
-<<<<<<< Updated upstream
   background-color: #666; /* Cor de fundo cinza escuro */
   color: white; /* Cor do texto branca */
   border: none; /* Remove bordas */
@@ -129,7 +128,6 @@ footer {
   font-size: medium; /* Tamanho da fonte */
   cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
   width: 35vw; /* Largura baseada em viewport width */
-=======
   background-color: var(--cinza_escuro);
   color: var(--branco);
   border: none;
@@ -139,8 +137,7 @@ footer {
   cursor: pointer;
   width: 35vw;
   margin-right: 1vw;
-  margin-left: 1vw;
->>>>>>> Stashed changes
+  margin-left: 1vw
 }
 
 /* Remove o contorno ao focar nos botões do footer */

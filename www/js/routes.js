@@ -24,14 +24,14 @@ var app = new Framework7({
 	  on: {
 		pageBeforeIn: function (event, page) {
 		// fazer algo antes da página ser exibida
-    $("#menu-principal").slideDown("fast")
+    	$("#menu-principal").slideDown("fast")
 		},
 		pageAfterIn: function (event, page) {
 		// fazer algo depois da página ser exibida
 		},
 		pageInit: function (event, page) {
 		// fazer algo quando a página for inicializada
-		app.views.main.router.navigate("/cronometro/")
+		
 		},
 		pageBeforeRemove: function (event, page) {
 		// fazer algo antes da página ser removida do DOM
@@ -45,7 +45,7 @@ var app = new Framework7({
 	  on: {
 		pageBeforeIn: function (event, page) {
 		// fazer algo antes da página ser exibida
-    $("#menu-principal").slideDown("fast")
+    	$("#menu-principal").slideDown("fast")
 		},
 		pageAfterIn: function (event, page) {
 		// fazer algo depois da página ser exibida
@@ -116,8 +116,6 @@ var app = new Framework7({
 		},
 		pageInit: function (event, page) {
 		// fazer algo quando a página for inicializada
-<<<<<<< Updated upstream
-=======
 		// Função para atualizar o cronômetro e o título
 		function updateTimerAndTitle() {
 			var checkbox = document.getElementById('chk');
@@ -135,7 +133,6 @@ var app = new Framework7({
 		
 		// Adiciona um ouvinte de eventos para a mudança da checkbox
 		document.getElementById('chk').addEventListener('change', updateTimerAndTitle);
->>>>>>> Stashed changes
 		},
 		pageBeforeRemove: function (event, page) {
 		// fazer algo antes da página ser removida do DOM
@@ -207,7 +204,27 @@ var app = new Framework7({
 		// fazer algo antes da página ser removida do DOM
 		},
 	  }
-    }
+    },
+	{
+		path: '/anexos/',
+		url: 'anexos.html',
+		animate: false,
+		on: {
+		  pageBeforeIn: function (event, page) {
+			// fazer algo antes da página ser exibida
+			$("#menu-principal").slideDown("fast");
+		  },
+		  pageAfterIn: function (event, page) {
+			// fazer algo depois da página ser exibida
+		  },
+		  pageInit: function (event, page) {
+			// fazer algo quando a página for inicializada
+		  },
+		  pageBeforeRemove: function (event, page) {
+			// fazer algo antes da página ser removida do DOM
+		  },
+		}
+	  }  
   ],
   
   // ... other parameters
