@@ -30,7 +30,7 @@ var app = new Framework7({
 		},
 		pageInit: function (event, page) {
 		// fazer algo quando a página for inicializada
-		// app.views.main.router.navigate("/acessibilidade/")
+		app.views.main.router.navigate("/nota/")
 		},
 		pageBeforeRemove: function (event, page) {
 		// fazer algo antes da página ser removida do DOM
@@ -181,10 +181,9 @@ var app = new Framework7({
 		pageInit: function (event, page) {
 		// fazer algo quando a página for inicializada
 		var editor = app.textEditor.create({
-			el: '#my-text-editor',
-			mode: 'toolbar', // Modo do editor (toolbar)
-			value: '', // Conteúdo inicial
-			buttons: ['bold', 'italic', 'underline', 'strikeThrough', 'link'], // Botões disponíveis
+			el: '.text-editor',
+			mode: 'popover',
+			buttons: [["bold", "italic", "underline", "strikeThrough"], ["orderedList", "unorderedList"]], // Botões disponíveis
 			placeholder: 'Escreva suas notas aqui...',
 		 });
 		},

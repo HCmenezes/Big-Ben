@@ -40,10 +40,9 @@
             
                     <main>
                         <!-- Main content -->
-                        <div class="text-editor text-editor-init" id="my-text-editor" data-placeholder="Enter text..."
-                        data-buttons='[["bold", "italic", "underline", "strikeThrough"], ["orderedList", "unorderedList"]]'>
+                        <div class="text-editor">
                             <div class="text-editor-content" contenteditable></div>
-                      </div>
+                        </div>
                     </main>
                 </div>
             </div>
@@ -62,16 +61,6 @@
     <!-- Cordova script -->
     <script src="cordova.js"></script>
         <!-- Custom script -->
-        <script>                                   
-            // Inicializando o editor de texto
-            var editor = app.textEditor.create({
-                el: '#my-text-editor',
-                mode: 'toolbar', // Modo do editor (toolbar)
-                value: '', // Conteúdo inicial
-                buttons: ['bold', 'italic', 'underline', 'strikeThrough', 'link'], // Botões disponíveis
-                placeholder: 'Escreva suas notas aqui...',
-             });
-        </script>
-</body>
 
 </html>
+asas

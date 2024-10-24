@@ -23,7 +23,7 @@
                     <div class="navbar-inner justify-content-center">
                         <div id="back-arrow" class="link back ripple-inset">
                             <!-- Back navigation link -->
-                            <a href="/sessoes/" data-transition="f7-fade">
+                            <a href="/bloco_notas/" data-transition="f7-fade">
                                 <i class="mdi mdi-arrow-left"></i>
                             </a>
                         </div>
@@ -33,18 +33,11 @@
                 </div>
 
                 <!-- Main content container -->
-                <div class="container">
-                    <header>
-                        <!-- Header section, currently empty -->
-                    </header>
-            
-                    <main>
+                <div class="container" id="container-note">
                         <!-- Main content -->
-                        <div class="text-editor text-editor-init" id="my-text-editor" data-placeholder="Enter text..."
-                        data-buttons='[["bold", "italic", "underline", "strikeThrough"], ["orderedList", "unorderedList"]]'>
+                        <div class="text-editor">
                             <div class="text-editor-content" contenteditable></div>
-                      </div>
-                    </main>
+                        </div>
                 </div>
             </div>
         </div>
@@ -62,16 +55,6 @@
     <!-- Cordova script -->
     <script src="cordova.js"></script>
         <!-- Custom script -->
-        <script>                                   
-            // Inicializando o editor de texto
-            var editor = app.textEditor.create({
-                el: '#my-text-editor',
-                mode: 'toolbar', // Modo do editor (toolbar)
-                value: '', // Conteúdo inicial
-                buttons: ['bold', 'italic', 'underline', 'strikeThrough', 'link'], // Botões disponíveis
-                placeholder: 'Escreva suas notas aqui...',
-             });
-        </script>
-</body>
 
 </html>
+asas
