@@ -1,0 +1,118 @@
+#anex-cont{
+    width: 95%;
+    height: 82%;
+    margin-top: 20vw;
+    background-color: var(--branco);
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+}
+
+.file-list {
+    margin-bottom: 20px;
+}
+
+.file-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.file-icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.file-info {
+    font-size: 14px;
+}
+
+.file-name {
+    font-weight: bold;
+}
+
+.file-details {
+    color: #888;
+    margin: 2px 0;
+}
+
+.actions {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.container {
+    width: 300px;
+    padding: 20px;
+    background-color: var(--branco);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.file-list {
+    margin-bottom: 20px;
+}
+
+.file-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.file-icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.file-info {
+    font-size: 14px;
+}
+
+.file-name {
+    font-weight: bold;
+}
+
+.file-details {
+    color: #888;
+    margin: 2px 0;
+}
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn {
+    background-color: var(--cinza);
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 45%;
+    text-align: center;
+    margin-right: 1vw;
+    margin-left: 1vw;
+    color: #000000;
+    text-decoration: none;
+}
+
+.btn:hover {
+    background-color: var(--cinza_escuro);
+}
+.btn {
+    background-color: var(--cinza);
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 45%;
+    text-align: center;
+}
+
+.btn:hover {
+    background-color: var(--cinza_escuro);
+}

@@ -182,7 +182,7 @@ var app = new Framework7({
 		// fazer algo quando a página for inicializada
 		var editor = app.textEditor.create({
 			el: '.text-editor',
-			mode: 'popover',
+			mode: 'toolbar',
 			buttons: [["bold", "italic", "underline", "strikeThrough"], ["orderedList", "unorderedList"]], // Botões disponíveis
 			placeholder: 'Escreva suas notas aqui...',
 		 });
@@ -192,6 +192,26 @@ var app = new Framework7({
 		},
 	  }
     },
+	{
+		path: '/anexos/',
+		url: 'anexos.html',
+		animate: false,
+		on: {
+		  pageBeforeIn: function (event, page) {
+			// fazer algo antes da página ser exibida
+			$("#menu-principal").slideUp("fast");
+		  },
+		  pageAfterIn: function (event, page) {
+			// fazer algo depois da página ser exibida
+		  },
+		  pageInit: function (event, page) {
+			// fazer algo quando a página for inicializada
+		  },
+		  pageBeforeRemove: function (event, page) {
+			// fazer algo antes da página ser removida do DOM
+		  },
+		}
+	  },
     {
       path: '/sobre_app/',
       url: 'sobre_app.html',
