@@ -20,7 +20,6 @@ var app = new Framework7({
     {
       path: '/index/',
       url: 'index.html',
-      animate: false,
 	  on: {
 		pageBeforeIn: function (event, page) {
 		// fazer algo antes da página ser exibida
@@ -31,7 +30,7 @@ var app = new Framework7({
 		},
 		pageInit: function (event, page) {
 		// fazer algo quando a página for inicializada
-		
+		app.views.main.router.navigate("/relatorios/")
 		},
 		pageBeforeRemove: function (event, page) {
 		// fazer algo antes da página ser removida do DOM
@@ -41,11 +40,56 @@ var app = new Framework7({
     {
       path: '/relatorios/',
       url: 'relatorios.html',
-      animate: false,
+      options: {
+      transition: 'f7-dive',
+      },
 	  on: {
 		pageBeforeIn: function (event, page) {
 		// fazer algo antes da página ser exibida
     	$("#menu-principal").slideDown("fast")
+		const ctx = document.getElementById('myChart').getContext('2d');
+                        const myChart = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: ['Matéria1', 'Matéria2', 'Matéria3', 'Matéria4', 'Matéria5'],
+                                datasets: [{
+                                    label: 'Horas estudadas',
+                                    data: [10, 20, 15, 25, 30], // Exemplo de valores para cada matéria
+                                    backgroundColor: [
+                                        '#4FC3F7', // azulzao
+                                        '#F06292', // cor similar para a seção rosa
+                                        '#FFD54F', // cor similar para a seção amarela
+                                        '#81C784', // cor adicional
+                                        '#BA68C8', // cor adicional
+                                        '#FF8A65'  // cor adicional
+                                    ],
+                                    borderWidth: 0
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+								indexAxis: 'y',
+								scales: {
+									x: {
+									  beginAtZero: true,
+									  ticks: {
+										padding: 20 // Distância dos índices em relação ao eixo X
+									  },
+									  grid: {
+										display: false // Esconde a linha de grid para um efeito visual mais limpo
+									  }
+									},
+									y: {
+									  beginAtZero: true
+									}
+								  },
+                                plugins: {
+                                    legend: {
+                                        position: 'top',
+                                    },
+                                },
+                            }
+                        });
 		},
 		pageAfterIn: function (event, page) {
 		// fazer algo depois da página ser exibida
@@ -61,7 +105,9 @@ var app = new Framework7({
     {
       path: '/configuracoes/',
       url: 'configuracoes.html',
-      animate: false,
+      options: {
+      transition: 'f7-dive',
+      },
 	  on: {
 		pageBeforeIn: function (event, page) {
 		// fazer algo antes da página ser exibida
@@ -123,7 +169,7 @@ var app = new Framework7({
 			var timerType = document.getElementById('timerType');
 			
 			if (checkbox.checked) {
-				timerDisplay.textContent = '25:00';
+				timerDisplay.textContent = '25:00:00';
 				timerType.textContent = 'Pomodoro';
 			} else {
 				timerDisplay.textContent = '00:00:00';
@@ -139,6 +185,76 @@ var app = new Framework7({
 		},
 	  }
     },
+	{
+		path: '/bloco_notas/',
+		url: 'bloco_notas.html',
+		options: {
+      transition: 'f7-dive',
+      },
+		on: {
+		  pageBeforeIn: function (event, page) {
+		  // fazer algo antes da página ser exibida
+	  $("#menu-principal").slideUp("fast")
+		  },
+		  pageAfterIn: function (event, page) {
+		  // fazer algo depois da página ser exibida
+		  },
+		  pageInit: function (event, page) {
+		  // fazer algo quando a página for inicializada
+		  },
+		  pageBeforeRemove: function (event, page) {
+		  // fazer algo antes da página ser removida do DOM
+		  },
+		}
+	  },
+		{
+      path: '/nota/',
+      url: 'nota.html',
+      options: {
+      transition: 'f7-dive',
+      },
+	  on: {
+		pageBeforeIn: function (event, page) {
+		// fazer algo antes da página ser exibida
+    $("#menu-principal").slideUp("fast")
+		},
+		pageAfterIn: function (event, page) {
+		// fazer algo depois da página ser exibida
+		},
+		pageInit: function (event, page) {
+		// fazer algo quando a página for inicializada
+		var editor = app.textEditor.create({
+			el: '.text-editor',
+			mode: 'toolbar',
+			buttons: [["bold", "italic", "underline", "strikeThrough"], ["orderedList", "unorderedList"]], // Botões disponíveis
+			placeholder: 'Escreva suas notas aqui...',
+		 });
+		},
+		pageBeforeRemove: function (event, page) {
+		// fazer algo antes da página ser removida do DOM
+		},
+	  }
+    },
+	{
+		path: '/anexos/',
+		url: 'anexos.html',
+		animate: false,
+		on: {
+		  pageBeforeIn: function (event, page) {
+			// fazer algo antes da página ser exibida
+			$("#menu-principal").slideUp("fast");
+		  },
+		  pageAfterIn: function (event, page) {
+			// fazer algo depois da página ser exibida
+		  },
+		  pageInit: function (event, page) {
+			// fazer algo quando a página for inicializada
+		  },
+		  pageBeforeRemove: function (event, page) {
+			// fazer algo antes da página ser removida do DOM
+		  },
+		}
+	  },
     {
       path: '/sobre_app/',
       url: 'sobre_app.html',
@@ -204,27 +320,7 @@ var app = new Framework7({
 		// fazer algo antes da página ser removida do DOM
 		},
 	  }
-    },
-	{
-		path: '/anexos/',
-		url: 'anexos.html',
-		animate: false,
-		on: {
-		  pageBeforeIn: function (event, page) {
-			// fazer algo antes da página ser exibida
-			$("#menu-principal").slideDown("fast");
-		  },
-		  pageAfterIn: function (event, page) {
-			// fazer algo depois da página ser exibida
-		  },
-		  pageInit: function (event, page) {
-			// fazer algo quando a página for inicializada
-		  },
-		  pageBeforeRemove: function (event, page) {
-			// fazer algo antes da página ser removida do DOM
-		  },
-		}
-	  }  
+    }
   ],
   
   // ... other parameters

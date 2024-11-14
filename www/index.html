@@ -10,17 +10,20 @@
     <!-- Color theme for statusbar (Android only) -->
     <meta name="theme-color" content="#e76763">
     <!-- Your app title -->
-    <title>BigBen</title>
+    <title>Big Ben</title>
     <!-- Path to Framework7 Library Bundle CSS -->
     <link rel="stylesheet" href="lib/framework7-bundle.min.css">
     <!-- CSS PERSONALIZADO PARA MENU-->
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/sessoes.css">
     <link rel="stylesheet" href="css/cronometro.css">
+    <link rel="stylesheet" href="css/nota.css">
+    <link rel="stylesheet" href="css/idiomas.css">
     <link rel="stylesheet" href="css/anexos.css">
     <link rel="stylesheet" href="css/sobre-app.css">
     <!--Ícones Material Design-->
     <link rel="stylesheet" href="css/materialdesignicons.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 </head>
 
@@ -56,7 +59,7 @@
                     <form class="Searchbar">
                         <div id="Searchinput">
                             <i class="mdi mdi-magnify"></i>
-                            <input type="text" placeholder="O que vamos estudar hoje?">
+                            <input id="src" onkeyup="search_book()"  type="text" placeholder="O que vamos estudar hoje?">
                         </div>
                     </form>
 
@@ -102,13 +105,13 @@
                                     <a href="/sessoes/">
                                     <div class="buttom">
                                         <i class="mdi mdi-wrench"></i>
-                                        Manuntenção de Sistemas
+                                        Manuntenção de Infraestrutura
                                     </div>
                                 </a>
                                     <a href="/sessoes/">
                                     <div class="buttom">
                                         <i class="mdi mdi-wrench"></i>
-                                        Manuntenção de Sistemas
+                                        Internet das coisas
                                     </div>
                                 </a>
                                     <a href="/sessoes/">
@@ -142,6 +145,8 @@
     <!-- Roteamento do app-->
     <script type="text/javascript" src="js/routes.js"></script>
     <script src="cordova.js"></script>
+    <script src="js/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
 
 </html>

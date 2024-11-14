@@ -10,6 +10,7 @@
 }
 
 body {
+  font-family: Arial, sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,15 +21,16 @@ p {
   font-size: medium;
 }
 
-.container{
+.container {
   width: 280px;
-  margin-top: 25vw;
+  height: 80vh;
+  margin-top: 30vw;
   background-color: var(--branco);
   border-radius: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   padding: 20px;
   text-align: center;
-  margin-left: 2.7vw;
+  margin-left: 5vw;
 }
 
 header {
@@ -122,9 +124,9 @@ h3 {
   border: none;
   border-radius: 50%;
   width: 65px;
-  height: 65px;
   padding: 20px;
-  font-size: 23px;
+  font-size: 25px;
+  cursor: pointer;
 }
 
 .play-button:focus {
@@ -146,10 +148,6 @@ footer {
   font-size: medium;
   cursor: pointer;
   width: 35vw;
-}
-
-#anexos{
-  height: 16vw;
 }
 
 .footer-button:focus {

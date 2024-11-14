@@ -8,25 +8,43 @@
         <!-- Your main view, should have "view-main" class -->
         <div class="view view-main">
             <!-- Initial Page, "data-name" contains page name -->
-            <div data-name="selec_sessao" class="page">
+            <div data-name="configuracoes" class="page">
 
                 <!-- Top Navbar -->
                 <div class="navbar">
                     <div class="navbar-bg"></div>
                     <div class="navbar-inner justify-content-center">
                         <div id="back-arrow" class="link back ripple-inset">
-                            <a href="/sessoes/" data-transition="f7-fade">
+                            <a href="/configuracoes/" data-transition="f7-fade">
                                 <i class="mdi mdi-arrow-left"></i>
                             </a>
                         </div>
-                        <div class="title">Lorem ipsum</div>
+                        <div class="title">Acessibilidade</div>
                     </div>
                 </div>
 
+                <!-- Scrollable page content -->
+                <div class="page-content">
+                    <div class="block">
+                        <a href="">
+                            <div class="buttom">
+                                <i class="mdi mdi-eye-off-outline"></i>
+                                <i class="mdi mdi-format-font-size-increase"></i>
+                                Autismo
+                            </div>
+                        </a>
+                            <a href="">
+                                <div class="buttom">
+                                    <i class="mdi mdi-view-carousel"></i>
+                                    <i class="mdi mdi-format-font-size-decrease"></i>
+                                    TDAH
+                                </div>
+                            </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
     <!-- Path to Framework7 Library Bundle JS-->
     <script type="text/javascript" src="lib/framework7-bundle.min.js"></script>
 	<!-- jQuery -->

@@ -1,0 +1,25 @@
+:root {
+  --vermelho: #e76763;
+  --vermelho_escuro: #ec4c47;
+  --ripple: #f50800;
+  --branco: #ffffff;
+  --cinza: #c5c3c3;
+  --cinza_escuro: #948c8c;
+  --preto: #000000;
+  --verde: #01b301;
+}
+
+#container-note{
+  margin-top: 20vw;
+  height: 83%;
+}
+
+.text-editor{
+  margin: 0;
+  height: 100%;
+  border: none;
+}
+
+.text-editor-content {
+  text-align: left;
+}
