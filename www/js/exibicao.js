@@ -1,4 +1,4 @@
-
+// Search Box
 function search_book() {
     let input = document.getElementById('src').value
     input = input.toLowerCase();
@@ -13,3 +13,8 @@ function search_book() {
         }
     }
 }
+
+// Cronômetro
+
+
+// Gráficos

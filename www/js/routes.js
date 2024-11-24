@@ -30,7 +30,7 @@ var app = new Framework7({
 		},
 		pageInit: function (event, page) {
 		// fazer algo quando a página for inicializada
-		app.views.main.router.navigate("/nota/")
+		//app.views.main.router.navigate("/nota/")
 		},
 		pageBeforeRemove: function (event, page) {
 		// fazer algo antes da página ser removida do DOM
@@ -53,6 +53,45 @@ var app = new Framework7({
 		},
 		pageInit: function (event, page) {
 		// fazer algo quando a página for inicializada
+		const ctx = document.getElementById('myChart').getContext('2d');
+			const myChart = new Chart(ctx, {
+				type: 'bar',
+				data: {
+					labels: ['Matéria1', 'Matéria2', 'Matéria3', 'Matéria4'],
+					datasets: [{
+						label: 'Horas estudadas',
+						
+						data: [10, 20, 15, 25, 30], // Exemplo de valores para cada matéria
+						backgroundColor: [
+							'#ec4c47',
+						],
+						borderWidth: 0
+					}]
+				},
+				options: {
+					responsive: true,
+					indexAxis: 'y',
+					scales: {
+						x: {
+							beginAtZero: true,
+							ticks: {
+							padding: 20 // Distância dos índices em relação ao eixo X
+							},
+							grid: {
+							display: false // Esconde a linha de grid para um efeito visual mais limpo
+							}
+						},
+						y: {
+							beginAtZero: true
+						}
+						},
+					plugins: {
+						legend: {
+							position: 'top',
+						},
+					},
+				}
+			});
 		},
 		pageBeforeRemove: function (event, page) {
 		// fazer algo antes da página ser removida do DOM
@@ -112,14 +151,13 @@ var app = new Framework7({
 	  on: {
 		pageBeforeIn: function (event, page) {
 		// fazer algo antes da página ser exibida
-    $("#menu-principal").slideUp("fast")
+    	$("#menu-principal").slideUp("fast")
 		},
 		pageAfterIn: function (event, page) {
 		// fazer algo depois da página ser exibida
 		},
 		pageInit: function (event, page) {
 		// fazer algo quando a página for inicializada
-		// Função para atualizar o cronômetro e o título
 		function updateTimerAndTitle() {
 			var checkbox = document.getElementById('chk');
 			var timerDisplay = document.getElementById('timer');
@@ -133,8 +171,6 @@ var app = new Framework7({
 				timerType.textContent = 'Cronômetro';
 			}
 		}
-		
-		// Adiciona um ouvinte de eventos para a mudança da checkbox
 		document.getElementById('chk').addEventListener('change', updateTimerAndTitle);
 		},
 		pageBeforeRemove: function (event, page) {
