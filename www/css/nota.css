@@ -9,6 +9,16 @@
   --verde: #01b301;
 }
 
+#titulo-nota{
+  font-size: 30px;
+  color: var(--vermelho);
+  position: absolute;
+  z-index: 1;
+  top: 40px;
+  left: 105px;
+  box-shadow: ;
+}
+
 #container-note{
   margin-top: 20vw;
   height: 83%;

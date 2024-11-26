@@ -48,7 +48,18 @@
 }
 
 #page-content-sessions{
-    height: 92%;
+    margin-top: 110px;
+    height: 78%;
+}
+
+#titulo{
+    font-size: 30px;
+    color: var(--vermelho);
+    position: absolute;
+    z-index: 1;
+    top: 40px;
+    left: 115px;
+    box-shadow: ;
 }
 
 @media (max-width:450px) and (min-width:370px) {
