@@ -1,0 +1,28 @@
+.back-button {
+    text-decoration: none;
+    color: var(--vermelho);
+    font-size: 20px;
+}
+
+.info-section {
+    margin-bottom: 20px;
+}
+
+.info-title {
+    font-weight: bold;
+    font-size: 14px;
+    margin: 0;
+    padding-bottom: 5px;
+}
+
+.info-detail {
+    color: var(--cinza_escuro);
+    font-size: 12px;
+    margin: 0;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid var(--cinza);
+    margin: 10px 0;
+}

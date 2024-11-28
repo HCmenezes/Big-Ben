@@ -66,7 +66,7 @@
                     <!-- Manage options -->
                         <div class="Options-Buttons">
                             <a href="">
-                                <div class="Create-Button">
+                                <div  onclick="criar()" class="Create-Button">
                                     <i class="mdi mdi-book-plus"></i>
                                     Novo
                                 </div>
@@ -78,7 +78,7 @@
                                 </div>
                             </a>
                             <a href="">
-                                <div class="Delete-Button">
+                                <div onclick="deleteSelectMat()" class="Delete-Button">
                                     <i class="mdi mdi-book-minus"></i>
                                     Apagar
                                 </div>
@@ -88,57 +88,34 @@
                     <!-- Scrollable page content -->
                     <div class="page-content infinite-scroll-content infinite-scroll-top">
                         <div class="block">
-                            <!-- <i id="None_Books" class="mdi mdi-book-alert"></i>
-                            <h1 id="None_Books_text">Você ainda não possui livros em sua biblioteca</h1> -->
-                            
-                            <a href="/sessoes/">
-                                <div class="buttom skeleton-effect-pulse">
-                                    
-                                </div>
-                            </a>
 
-                            <a href="/sessoes/">
-                                <div class="buttom">
-                                    <i class="mdi mdi-unfold-more-vertical"></i>
-                                    Desenvolvimento de Sistemas
-                                </div>
-                            </a>
-                                <a href="/sessoes/">
-                                    <div class="buttom">
-                                        <i class="mdi mdi-wrench"></i>
-                                        Manuntenção de Sistemas
-                                    </div>
-                                </a>
-                                    <a href="/sessoes/">
-                                    <div class="buttom">
-                                        <i class="mdi mdi-wrench"></i>
-                                        Manuntenção de Infraestrutura
-                                    </div>
-                                </a>
-                                    <a href="/sessoes/">    
-                                    <div class="buttom">
-                                        <i class="mdi mdi-wrench"></i>
-                                        Internet das coisas
-                                    </div>
-                                </a>
-                                    <a href="/sessoes/">
-                                    <div class="buttom">
-                                        <i class="mdi mdi-wrench"></i>
-                                        Manuntenção de Sistemas
-                                    </div>
-                                </a>
-                                    <a href="/sessoes/">
-                                    <div class="buttom">
-                                        <i class="mdi mdi-wrench"></i>
-                                        Manuntenção de Sistemas
-                                    </div>
-                                </a>
-                                    <a href="/sessoes/">
-                                    <div class="buttom">
-                                        <i class="mdi mdi-wrench"></i>
-                                        Manuntenção de Sistemas
-                                    </div>
-                                </a>
+                            <div class="buttom skeleton-effect-pulse">
+                                
+                            </div>
+
+                            <div class="buttom skeleton-effect-pulse">
+                                
+                            </div>
+                            
+                            <div class="buttom skeleton-effect-pulse">
+                                
+                            </div>
+
+                            <div class="buttom skeleton-effect-pulse">
+                                
+                            </div>
+
+                            <div class="buttom skeleton-effect-pulse">
+                                
+                            </div>
+
+                            <div class="buttom skeleton-effect-pulse">
+                                
+                            </div>
+
+                            <div class="buttom skeleton-effect-pulse">
+                                
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -151,9 +128,7 @@
 	<script type="text/javascript" src="lib/jquery-3.7.0.min.js"></script>	
     <!-- Roteamento do app-->
     <script type="text/javascript" src="js/routes.js"></script>
-    <script src="cordova.js"></script>
-    <!--Código Próprio-->
-    <script src="js/exibicao.js"></script>
+    <script  src="cordova.js"></script>
     <!--Chart.js-->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>

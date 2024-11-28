@@ -28,7 +28,7 @@
                             </a>
                         </div>
                         <!-- Page title -->
-                        <div class="title">Cronômetro</div>
+                        <div class="title">Lorem</div>
                     </div>
                 </div>
 
@@ -43,7 +43,7 @@
                         <div class="cronometro">
                             <div class="containerheader">
                                 <!-- Header inside the main content -->
-                                <h2>Dev web</h2>
+                                <h2>Cronômetro</h2>
                                 <!-- Toggle switch -->
                                 <div class="toggle">
                                     <input type="checkbox" class="checkbox" id="chk" />
@@ -62,9 +62,12 @@
                             <div class="timer-circle">
                                 <span id="timer">00:00:00</span>
                             </div>
+                            
                             <!-- Play button -->
                             <button class="play-button">▶</button>
                             <p>Continuar</p>
+                            <button class="play-button">↩</button>
+                            <p>Reiniciar</p>
                         </div>
                     </main>
             
@@ -76,10 +79,12 @@
                                 Bloco de Notas
                             </button>
                         </a>
-                        <button class="footer-button">
-                            <i class="mdi mdi-paperclip"></i>
-                            Anexos
-                        </button>
+                        <a href="/anexos/">
+                            <button id="anexos" class="footer-button">
+                                <i class="mdi mdi-paperclip"></i>
+                                Anexos
+                            </button>
+                        </a>
                     </footer>
                 </div>
             </div>
@@ -97,6 +102,8 @@
     
     <!-- Cordova script -->
     <script src="cordova.js"></script>
+
+    <script src="js/exibicao.js"></script>
 </body>
 
 </html>

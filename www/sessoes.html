@@ -48,6 +48,15 @@
                     </a>
                 </div>
 
+                <!-- Modal personalizado -->
+                <div id="customAlert" class="modal">
+                    <div class="modal-content">
+                        <h2 id="alertTitle">Título do Alerta</h2>
+                        <p id="alertMessage">Mensagem do alerta aqui</p>
+                        <button id="closeButton">Fechar</button>
+                    </div>
+                </div>
+
                 <!-- Scrollable page content -->
                 <div id="page-content-sessions" class="page-content">
                     <div class="block">
@@ -59,7 +68,7 @@
                                 <h4>Sessões realizadas: 12<br>Tempo total: 12h12min</h4>
                             </div>
                         </a>
-                            <a href="/cronometro/">
+                            <a onclick="showCustomAlert('Aviso Importante', 'Este é um alerta personalizado!')" href="//">
                                 <div class="buttom-session">
                                     <h3>Titulo<br></h3>
                                     <h4>Início: 12/12/2012<br></h4>

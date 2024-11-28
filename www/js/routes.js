@@ -24,13 +24,14 @@ var app = new Framework7({
 		pageBeforeIn: function (event, page) {
 		// fazer algo antes da página ser exibida
     	$("#menu-principal").slideDown("fast")
+		$.getScript('js/index.js')
 		},
 		pageAfterIn: function (event, page) {
 		// fazer algo depois da página ser exibida
 		},
 		pageInit: function (event, page) {
 		// fazer algo quando a página for inicializada
-		// app.views.main.router.navigate("/cronometro/")
+		// app.views.main.router.navigate("/sessoes/")
 		},
 		pageBeforeRemove: function (event, page) {
 		// fazer algo antes da página ser removida do DOM
@@ -129,13 +130,15 @@ var app = new Framework7({
 	  on: {
 		pageBeforeIn: function (event, page) {
 		// fazer algo antes da página ser exibida
-    $("#menu-principal").slideUp("fast")
+    	$("#menu-principal").slideUp("fast")
+
 		},
 		pageAfterIn: function (event, page) {
 		// fazer algo depois da página ser exibida
 		},
 		pageInit: function (event, page) {
 		// fazer algo quando a página for inicializada
+		$.getScript('js/sessoes.js')
 		},
 		pageBeforeRemove: function (event, page) {
 		// fazer algo antes da página ser removida do DOM

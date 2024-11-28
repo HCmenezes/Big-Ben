@@ -50,7 +50,7 @@ body{
 #None_Books{
     color: var(--cinza);
     font-size: 200px;
-    padding-left: 140px;
+    padding-left: 80px;
     margin: 0;
 }
 
@@ -68,6 +68,21 @@ body{
     padding-top: 10px;
     text-align: center;
     font-size: large;
+}
+
+#delete-buttom{
+    background: var(--cinza);
+    margin: 20px;
+    height: 40px;
+    border-radius: 20px;
+    color: var(--ripple);
+    padding-top: 10px;
+    text-align: center;
+    font-size: large;
+}
+
+#delete-buttom:hover{
+    background: var(--vermelho_escuro);
 }
 
 .buttom:hover{
@@ -115,6 +130,10 @@ body{
     font-size: large;
 }
 
+#Cancel-Button{
+    width: 85px;
+    margin-left: 120px;
+}
 
 /* Framework7 Tags */
 .toolbar{
