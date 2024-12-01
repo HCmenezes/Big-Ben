@@ -6,6 +6,7 @@
     --cinza: #c5c3c3;
     --cinza_escuro: #948c8c;
     --preto: #000000;
+    --preto_cinza: #474646;
     --verde: #01b301;
 }
 
@@ -70,6 +71,15 @@ body{
     font-size: large;
 }
 
+#select-icon{
+    padding: 10px;
+    height: fit-content;
+}
+
+#select-icon i{
+    font-size: 30px;
+}
+
 #delete-buttom{
     background: var(--cinza);
     margin: 20px;
@@ -79,6 +89,21 @@ body{
     padding-top: 10px;
     text-align: center;
     font-size: large;
+}
+
+#edit-buttom{
+    background: var(--preto_cinza);
+    margin: 20px;
+    height: 40px;
+    border-radius: 20px;
+    color: yellow;
+    padding-top: 10px;
+    text-align: center;
+    font-size: large;
+}
+
+#edit-buttom:hover{
+    background: yellow;
 }
 
 #delete-buttom:hover{
@@ -125,6 +150,7 @@ body{
     width: 80px;
     margin-left: 3px;
 }
+
 .Create-Button i, .Edit-Button i, .Delete-Button i{
     font-weight: bold;
     font-size: large;

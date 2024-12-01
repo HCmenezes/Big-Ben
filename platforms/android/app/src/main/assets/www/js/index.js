@@ -16,14 +16,13 @@ function search_book() {
 
 // Criação do BD, tabelas e armazenamento no Local Storage
 var db;
+
 var materiaHTML;
 document.addEventListener('deviceready', function () {
     db = window.sqlitePlugin.openDatabase({ name: 'big_ben.db', location: 'default' });
 
-    // Iniciar a transação
+    // Iniciar a transação Criar tabelas
     db.transaction(function (tx) {
-        
-        // Criar tabelas
         tx.executeSql(
             'CREATE TABLE IF NOT EXISTS materias (id_materia INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, titulo TEXT NOT NULL, icon TEXT, tempo_materia REAL)',
             [],
@@ -67,8 +66,10 @@ document.addEventListener('deviceready', function () {
                 console.error('Erro ao criar tabela:', error.message);
             }
         );
+    });
 
-        // Buscar dados das tabelas
+    // Iniciar a transação Buscar dados das tabelas
+    db.transaction(function (tx){
         tx.executeSql('SELECT * FROM materias',[],
             function (tx, resultSet) {
                 let materias = [];
@@ -140,7 +141,6 @@ document.addEventListener('deviceready', function () {
                 console.error('Erro ao buscar dados:', error.message);
             }
         );
-
     });
 });
 
@@ -177,8 +177,8 @@ document.addEventListener('deviceready', function () {
                 $(".block").empty();
                 materias.forEach(materia =>{
                     materiaHTML = `
-                        <a data-id="${materia.id_materia}" href="#">
-                            <div class="buttom">
+                        <a href="#">
+                            <div data-id="${materia.id_materia}" class="buttom">
                                 <i class="${materia.icon}"></i>
                                 ${materia.titulo}
                             </div>
@@ -191,7 +191,6 @@ document.addEventListener('deviceready', function () {
                     var id = $(this).attr('data-id');
                     localStorage.setItem('sessao', id);
                     app.views.main.router.navigate("/sessoes/")
-
                 })
             }
             },
@@ -203,80 +202,113 @@ document.addEventListener('deviceready', function () {
 });
 
 function inserirMat(){
-    let materiasStorage = JSON.parse(localStorage.getItem('materias'));
+    db = window.sqlitePlugin.openDatabase({ name: 'big_ben.db', location: 'default' });
 
     $(".Options-Buttons").empty();
     $(".Options-Buttons").append(`
             <a href="">
-                                <div  onclick="criar()" class="Create-Button">
-                                    <i class="mdi mdi-book-plus"></i>
-                                    Novo
-                                </div>
-                            </a>
-                            <a href="">
-                                <div class="Edit-Button">
-                                    <i class="mdi mdi-book-edit"></i>
-                                    Editar
-                                </div>
-                            </a>
-                            <a href="">
-                                <div onclick="deleteSelectMat()" class="Delete-Button">
-                                    <i class="mdi mdi-book-minus"></i>
-                                    Apagar
-                                </div>
-                            </a>
+                <div  onclick="criar()" class="Create-Button">
+                    <i class="mdi mdi-book-plus"></i>
+                    Novo
+                </div>
+            </a>
+            <a href="">
+                <div onclick="editSelectMat()" class="Edit-Button">
+                    <i class="mdi mdi-book-edit"></i>
+                    Editar
+                </div>
+            </a>
+            <a href="">
+                <div onclick="deleteSelectMat()" class="Delete-Button">
+                    <i class="mdi mdi-book-minus"></i>
+                    Apagar
+                </div>
+            </a>
         `);
 
     $(".block").empty();
-    materiasStorage.forEach(materia =>{
-        materiaHTML = `
-            <a data-id="${materia.id_materia}" href="#">
-                <div class="buttom">
-                    <i class="${materia.icon}"></i>
-                    ${materia.id_materia}
-                </div>
-            </a>
-        `;
-        $(".block").append(materiaHTML);
-        $(".buttom").hide();
+    
+    db.transaction(function (tx) {
+        // Buscar dados da tabela
+        tx.executeSql('SELECT * FROM materias',[],
+            function (tx, resultSet) {
+                let materias = [];
+
+                if (resultSet.rows.length === 0) {
+                    document.getElementById('src').placeholder = 'O que vamos estudar hoje?';
+                    // Substituir o conteúdo
+                    $(".block").empty();
+                    materiaHTML = `
+                        <i id="None_Books" class="mdi mdi-book-alert"></i>
+                        <h1 id="None_Books_text">Você ainda não possui livros em sua biblioteca</h1>
+                    `;
+                    $(".block").append(materiaHTML);
+                } else {
+                
+                // Iterar pelos resultados
+                for (let i = 0; i < resultSet.rows.length; i++) {
+                    materias.push(resultSet.rows.item(i));
+                }
+                
+                // Substituir o conteúdo
+                document.getElementById('src').placeholder = 'O que vamos estudar hoje?';
+                $(".block").empty();
+                materias.forEach(materia =>{
+                    materiaHTML = `
+                        <a href="#">
+                            <div data-id="${materia.id_materia}" class="buttom">
+                                <i class="${materia.icon}"></i>
+                                ${materia.titulo}
+                            </div>
+                        </a>
+                    `;
+                    $(".block").append(materiaHTML);
+                    $(".buttom").hide();
+                });
+                $(".buttom").on('click', function(){
+                    var id = $(this).attr('data-id');
+                    localStorage.setItem('sessao', id);
+                    app.views.main.router.navigate("/sessoes/")
+                })
+                $(".buttom").fadeIn();
+            }
+            },
+            function (tx, error) {
+                console.error('Erro ao buscar dados:', error.message);
+            }
+        );
     });
-    $(".buttom").fadeIn();
 }
 
 // CRUD
+var titulo;
+var icone;
 
-function criar() {
-    // Iniciar transação para deletar registros
+function getIcon(icone, titulo){
+    db = window.sqlitePlugin.openDatabase({ name: 'big_ben.db', location: 'default' });
+
+    app.dialog.alert(`Livro ${titulo} adicionado a biblioteca!`);
+
     db.transaction(function (tx) {
-       // Inserir entidades teste
-       tx.executeSql(
-        'INSERT INTO materias (titulo, icon, tempo_materia) VALUES (?, ?, ?)',
-        ['Desenvolvimento de Sistemas', 'mdi mdi-unfold-more-vertical', 1.5],
-        function (tx, res) {
-            console.log('Entidade 1 inserida com ID:', res.insertId);
-        },
-        function (tx, error) {
-            console.error('Erro ao inserir entidade 1:', error.message);
-        }
-    );
+        // Inserir entidades
+        tx.executeSql(
+         'INSERT INTO materias (titulo, icon) VALUES (?, ?)',
+         [`${titulo}`, `${icone}`],
+         function (tx, res) {
+             console.log('Entidade 1 inserida com ID:', res.insertId);
+         },
+         function (tx, error) {
+             console.error('Erro ao inserir entidade 1:', error.message);
+         }
+     )
 
-    tx.executeSql(
-        'INSERT INTO materias (titulo, icon, tempo_materia) VALUES (?, ?, ?)',
-        ['Java', 'mdi mdi-unfold-more-vertical', 2.0],
-        function (tx, res) {
-            console.log('Entidade 2 inserida com ID:', res.insertId);
-        },
-        function (tx, error) {
-            console.error('Erro ao inserir entidade 2:', error.message);
-        }
-    );
-
-    tx.executeSql('SELECT * FROM materias',[],
+     tx.executeSql('SELECT * FROM materias',[],
         function (tx, resultSet) {
             let materias = [];
 
             if (resultSet.rows.length === 0) {
                 // Substituir o conteúdo
+                document.getElementById('src').placeholder = 'O que vamos estudar hoje?';
                 $(".block").empty();
                 materiaHTML = `
                     <i id="None_Books" class="mdi mdi-book-alert"></i>
@@ -295,11 +327,34 @@ function criar() {
             console.log('Dados armazenados no LocalStorage:', materias);
             
             // Substituir o conteúdo
+            document.getElementById('src').placeholder = 'O que vamos estudar hoje?';
+            $(".Options-Buttons").empty();
+            $(".Options-Buttons").append(`
+            <a href="">
+                <div  onclick="criar()" class="Create-Button">
+                    <i class="mdi mdi-book-plus"></i>
+                    Novo
+                </div>
+            </a>
+            <a href="">
+                <div onclick="editSelectMat()" class="Edit-Button">
+                    <i class="mdi mdi-book-edit"></i>
+                    Editar
+                </div>
+            </a>
+            <a href="">
+                <div onclick="deleteSelectMat()" class="Delete-Button">
+                    <i class="mdi mdi-book-minus"></i>
+                    Apagar
+                </div>
+            </a>
+            `);
+
             $(".block").empty();
             materias.forEach(materia =>{
                 materiaHTML = `
-                    <a data-id="${materia.id_materia}" href="#">
-                        <div class="buttom">
+                    <a href="#">
+                        <div data-id="${materia.id_materia}" class="buttom">
                             <i class="${materia.icon}"></i>
                             ${materia.titulo}
                         </div>
@@ -320,8 +375,188 @@ function criar() {
             console.error('Erro ao buscar dados:', error.message);
         }
     );
-
     });
+};
+
+function criar(){
+    app.dialog.prompt('Escreva o nome do assunto', (titulo) => {
+        if(titulo == ""){
+            app.dialog.alert("Digite um nome válido");
+        } else{
+            app.dialog.confirm(`Deseja adicionar ${titulo} como assunto do livro?`, () => {
+                $(".Options-Buttons").empty();
+                $(".Options-Buttons").append(`
+                        <div onclick="inserirMat()" id="Cancel-Button" class="Delete-Button">
+                            <i class="mdi mdi-cancel"></i>
+                            Cancelar
+                        </div>
+                    `);
+                document.getElementById('src').placeholder = 'Procure seu ícone';
+                $(".block").empty();
+                    materiaHTML = `
+                            <div onclick="getIcon('mdi mdi-language-c', '${titulo}')" id="select-icon" class="buttom">
+                                <i class="mdi mdi-language-c"></i> <br>
+                                Linguagem C
+                            </div>
+                            <div onclick="getIcon('mdi mdi-language-ruby', '${titulo}')" id="select-icon" class="buttom">
+                                <i class="mdi mdi-language-ruby"></i> <br>
+                                Linguagem Ruby
+                            </div>
+                            <div onclick="getIcon('mdi mdi-language-java', '${titulo}')" id="select-icon" class="buttom">
+                                <i class="mdi mdi-language-java"></i> <br>
+                                Linguagem Java
+                            </div>
+                            <div onclick="getIcon('mdi mdi-language-html5', '${titulo}')" id="select-icon" class="buttom">
+                                <i class="mdi mdi-language-html5"></i> <br>
+                                Linguagem HTML
+                            </div>
+                            <div onclick="getIcon('mdi mdi-language-css3', '${titulo}')" id="select-icon" class="buttom">
+                                <i class="mdi mdi-language-css3"></i> <br>
+                                Linguagem CSS
+                            </div>
+                            <div onclick="getIcon('mdi mdi-language-javascript', '${titulo}')" id="select-icon" class="buttom">
+                                <i class="mdi mdi-language-javascript"></i> <br>
+                                Linguagem Java Script
+                            </div>
+                            <div onclick="getIcon('mdi mdi-language-php', '${titulo}')" id="select-icon" class="buttom">
+                                <i class="mdi mdi-language-php"></i> <br>
+                                Linguagem PHP
+                            </div>
+                            <div onclick="getIcon('mdi mdi-language-python', '${titulo}')" id="select-icon" class="buttom">
+                                <i class="mdi mdi-language-python"></i> <br>
+                                Linguagem Python
+                            </div>
+                    `;
+                    $(".block").append(materiaHTML);
+                    $(".buttom").hide();
+                    $(".buttom").fadeIn();
+                    app.dialog.alert(`Quase pronto, agora selecione o ícone para enfeitar a capa do seu livro!`);
+            });
+        }
+      });
+}
+
+function editSelectMat(){
+    $(".Options-Buttons").empty();
+    $(".Options-Buttons").append(`
+            <div onclick="inserirMat()" id="Cancel-Button" class="Edit-Button">
+                <i class="mdi mdi-cancel"></i>
+                Cancelar
+            </div>
+        `);
+    
+    let materiasStorage = JSON.parse(localStorage.getItem('materias'));
+
+    document.getElementById('src').placeholder = 'O que deseja editar?';
+    $(".block").empty();
+    materiasStorage.forEach(materia =>{
+        materiaHTML = `
+                <div onclick="editMat(${materia.id_materia}, '${materia.titulo}')" id="edit-buttom" class="buttom">
+                    <i class="mdi mdi-square-edit-outline"></i>
+                    ${materia.titulo}
+                </div>
+        `;
+        $(".block").append(materiaHTML);
+        $(".buttom").hide();
+    });
+    $(".buttom").fadeIn();
+}
+
+function editMat(matId, mat_tit){
+    db = window.sqlitePlugin.openDatabase({ name: 'big_ben.db', location: 'default' });
+    var itemId = matId;
+    var itemTit = mat_tit;
+        app.dialog.prompt('Escreva o novo nome do livro', (titulo) => {
+            if(titulo == ""){
+                app.dialog.alert("Digite um nome válido");
+            } else{
+                app.dialog.confirm(`Deseja mudar nome de ${mat_tit} para ${titulo}?`, () => {
+                    db.transaction(function(tx) {
+                        tx.executeSql('UPDATE materias SET titulo = ? WHERE id_materia = ?', [titulo, itemId], function(tx, res) {
+                            app.dialog.alert('Matéria alterada!!');
+            
+                            db.transaction(function (tx) {
+                                // Buscar dados da tabela
+                                tx.executeSql('SELECT * FROM materias',[],
+                                    function (tx, resultSet) {
+                                        let materias = [];
+                        
+                                        if (resultSet.rows.length === 0) {
+                                            document.getElementById('src').placeholder = 'O que vamos estudar hoje?';
+                                            // Substituir o conteúdo
+                                            $(".block").empty();
+                                            materiaHTML = `
+                                                <i id="None_Books" class="mdi mdi-book-alert"></i>
+                                                <h1 id="None_Books_text">Você ainda não possui livros em sua biblioteca</h1>
+                                            `;
+                                            $(".block").append(materiaHTML);
+                                        } else {
+                                        
+                                        // Iterar pelos resultados
+                                        for (let i = 0; i < resultSet.rows.length; i++) {
+                                            materias.push(resultSet.rows.item(i));
+                                        }
+                        
+                                        // Armazenar no LocalStorage
+                                        localStorage.setItem('materias', JSON.stringify(materias));
+                                        console.log('Dados armazenados no LocalStorage:', materias);
+                                        
+                                        document.getElementById('src').placeholder = 'O que vamos estudar hoje?';
+                                        $(".Options-Buttons").empty();
+                                        $(".Options-Buttons").append(`
+                                        <a href="">
+                                            <div  onclick="criar()" class="Create-Button">
+                                                <i class="mdi mdi-book-plus"></i>
+                                                Novo
+                                            </div>
+                                        </a>
+                                        <a href="">
+                                            <div onclick="editSelectMat()" class="Edit-Button">
+                                                <i class="mdi mdi-book-edit"></i>
+                                                Editar
+                                            </div>
+                                        </a>
+                                        <a href="">
+                                            <div onclick="deleteSelectMat()" class="Delete-Button">
+                                                <i class="mdi mdi-book-minus"></i>
+                                                Apagar
+                                            </div>
+                                        </a>
+                                        `);
+                                        // Substituir o conteúdo
+                                        $(".block").empty();
+                                        materias.forEach(materia =>{
+                                            materiaHTML = `
+                                                <a href="#">
+                                                    <div data-id="${materia.id_materia}" class="buttom">
+                                                        <i class="${materia.icon}"></i>
+                                                        ${materia.titulo}
+                                                    </div>
+                                                </a>
+                                            `;
+                                            $(".block").append(materiaHTML);
+                                        });
+                        
+                                        $(".buttom").on('click', function(){
+                                            var id = $(this).attr('data-id');
+                                            localStorage.setItem('sessao', id);
+                                            app.views.main.router.navigate("/sessoes/")
+                        
+                                        })
+                                    }
+                                    },
+                                    function (tx, error) {
+                                        console.error('Erro ao buscar dados:', error.message);
+                                    }
+                                );
+                            });
+                        }, function(tx, error) {
+                            app.dialog.alert('Erro ao deletar a Matéria: ', error.message);
+                        });
+                    });
+                });
+            }
+        });
 }
 
 function deleteSelectMat(){
@@ -335,10 +570,11 @@ function deleteSelectMat(){
     
     let materiasStorage = JSON.parse(localStorage.getItem('materias'));
 
+    document.getElementById('src').placeholder = 'O que deseja deletar?';
     $(".block").empty();
     materiasStorage.forEach(materia =>{
         materiaHTML = `
-                <div onclick="deleteMat(${materia.id_materia})" id="delete-buttom" class="buttom">
+                <div onclick="deleteMat(${materia.id_materia}, '${materia.titulo}')" id="delete-buttom" class="buttom">
                     <i class="mdi mdi-delete-circle-outline"></i>
                     ${materia.titulo}
                 </div>
@@ -349,88 +585,94 @@ function deleteSelectMat(){
     $(".buttom").fadeIn();
 }
 
-function deleteMat(event){
+function deleteMat(matId, mat_tit){
     db = window.sqlitePlugin.openDatabase({ name: 'big_ben.db', location: 'default' });
-    var itemId = event
-        db.transaction(function(tx) {
-            tx.executeSql('DELETE FROM materias WHERE id_materia = ?', [itemId], function(tx, res) {
-                app.dialog.alert('Matéria deletada!!');
+    var itemId = matId;
+    var itemTit = mat_tit;
+        app.dialog.confirm(`Deseja Realmente apagar o livro ${itemTit}?`, () => {
 
-                db.transaction(function (tx) {
-                    // Buscar dados da tabela
-                    tx.executeSql('SELECT * FROM materias',[],
-                        function (tx, resultSet) {
-                            let materias = [];
-            
-                            if (resultSet.rows.length === 0) {
+            db.transaction(function(tx) {
+                tx.executeSql('DELETE FROM materias WHERE id_materia = ?', [itemId], function(tx, res) {
+                    app.dialog.alert('Livro retirado da biblioteca!!');
+    
+                    db.transaction(function (tx) {
+                        // Buscar dados da tabela
+                        tx.executeSql('SELECT * FROM materias',[],
+                            function (tx, resultSet) {
+                                let materias = [];
+                
+                                if (resultSet.rows.length === 0) {
+                                    document.getElementById('src').placeholder = 'O que vamos estudar hoje?';
+                                    // Substituir o conteúdo
+                                    $(".block").empty();
+                                    materiaHTML = `
+                                        <i id="None_Books" class="mdi mdi-book-alert"></i>
+                                        <h1 id="None_Books_text">Você ainda não possui livros em sua biblioteca</h1>
+                                    `;
+                                    $(".block").append(materiaHTML);
+                                } else {
+                                
+                                // Iterar pelos resultados
+                                for (let i = 0; i < resultSet.rows.length; i++) {
+                                    materias.push(resultSet.rows.item(i));
+                                }
+                
+                                // Armazenar no LocalStorage
+                                localStorage.setItem('materias', JSON.stringify(materias));
+                                console.log('Dados armazenados no LocalStorage:', materias);
+                                
+                                document.getElementById('src').placeholder = 'O que vamos estudar hoje?';
+                                $(".Options-Buttons").empty();
+                                $(".Options-Buttons").append(`
+                                <a href="">
+                                    <div  onclick="criar()" class="Create-Button">
+                                        <i class="mdi mdi-book-plus"></i>
+                                        Novo
+                                    </div>
+                                </a>
+                                <a href="">
+                                    <div onclick="editSelectMat()" class="Edit-Button">
+                                        <i class="mdi mdi-book-edit"></i>
+                                        Editar
+                                    </div>
+                                </a>
+                                <a href="">
+                                    <div onclick="deleteSelectMat()" class="Delete-Button">
+                                        <i class="mdi mdi-book-minus"></i>
+                                        Apagar
+                                    </div>
+                                </a>
+                                `);
                                 // Substituir o conteúdo
                                 $(".block").empty();
-                                materiaHTML = `
-                                    <i id="None_Books" class="mdi mdi-book-alert"></i>
-                                    <h1 id="None_Books_text">Você ainda não possui livros em sua biblioteca</h1>
-                                `;
-                                $(".block").append(materiaHTML);
-                            } else {
-                            
-                            // Iterar pelos resultados
-                            for (let i = 0; i < resultSet.rows.length; i++) {
-                                materias.push(resultSet.rows.item(i));
+                                materias.forEach(materia =>{
+                                    materiaHTML = `
+                                        <a href="#">
+                                            <div data-id="${materia.id_materia}" class="buttom">
+                                                <i class="${materia.icon}"></i>
+                                                ${materia.titulo}
+                                            </div>
+                                        </a>
+                                    `;
+                                    $(".block").append(materiaHTML);
+                                });
+                
+                                $(".buttom").on('click', function(){
+                                    var id = $(this).attr('data-id');
+                                    localStorage.setItem('sessao', id);
+                                    app.views.main.router.navigate("/sessoes/")
+                
+                                })
                             }
-            
-                            // Armazenar no LocalStorage
-                            localStorage.setItem('materias', JSON.stringify(materias));
-                            console.log('Dados armazenados no LocalStorage:', materias);
-                            
-                            $(".Options-Buttons").empty();
-                            $(".Options-Buttons").append(`
-                            <a href="">
-                                <div  onclick="criar()" class="Create-Button">
-                                    <i class="mdi mdi-book-plus"></i>
-                                    Novo
-                                </div>
-                            </a>
-                            <a href="">
-                                <div class="Edit-Button">
-                                    <i class="mdi mdi-book-edit"></i>
-                                    Editar
-                                </div>
-                            </a>
-                            <a href="">
-                                <div onclick="deleteSelectMat()" class="Delete-Button">
-                                    <i class="mdi mdi-book-minus"></i>
-                                    Apagar
-                                </div>
-                            </a>
-                            `);
-                            // Substituir o conteúdo
-                            $(".block").empty();
-                            materias.forEach(materia =>{
-                                materiaHTML = `
-                                    <a data-id="${materia.id_materia}" href="#">
-                                        <div class="buttom">
-                                            <i class="${materia.icon}"></i>
-                                            ${materia.titulo}
-                                        </div>
-                                    </a>
-                                `;
-                                $(".block").append(materiaHTML);
-                            });
-            
-                            $(".buttom").on('click', function(){
-                                var id = $(this).attr('data-id');
-                                localStorage.setItem('sessao', id);
-                                app.views.main.router.navigate("/sessoes/")
-            
-                            })
-                        }
-                        },
-                        function (tx, error) {
-                            console.error('Erro ao buscar dados:', error.message);
-                        }
-                    );
+                            },
+                            function (tx, error) {
+                                console.error('Erro ao buscar dados:', error.message);
+                            }
+                        );
+                    });
+                }, function(tx, error) {
+                    app.dialog.alert('Erro ao deletar a Matéria: ', error.message);
                 });
-            }, function(tx, error) {
-                app.dialog.alert('Erro ao deletar a Matéria: ', error.message);
             });
         });
 }

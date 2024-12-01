@@ -19,6 +19,18 @@
     margin-right: 40px;
 }
 
+#None_Books{
+    color: var(--cinza);
+    font-size: 200px;
+    padding-left: 80px;
+    margin: 0;
+}
+
+#None_Books_text{
+    color: var(--cinza);
+    padding-left: 25px;
+}
+
 .buttom-session{
     background: var(--vermelho);
     margin: 20px;
@@ -28,6 +40,16 @@
     text-align: left;
     font-weight: bold;
     font-size: large;
+}
+
+#edit-buttom-session{
+    background: var(--preto_cinza);
+    color: yellow;
+}
+
+#delete-buttom-session{
+    background: var(--cinza);
+    color: var(--ripple);
 }
 
 .buttom-session:hover{
@@ -49,7 +71,7 @@
 
 #page-content-sessions{
     margin-top: 110px;
-    height: 78%;
+    height: 73%;
 }
 
 #titulo{
@@ -59,7 +81,6 @@
     z-index: 1;
     top: 40px;
     left: 115px;
-    box-shadow: ;
 }
 
 @media (max-width:450px) and (min-width:370px) {

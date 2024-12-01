@@ -131,7 +131,6 @@ var app = new Framework7({
 		pageBeforeIn: function (event, page) {
 		// fazer algo antes da página ser exibida
     	$("#menu-principal").slideUp("fast")
-
 		},
 		pageAfterIn: function (event, page) {
 		// fazer algo depois da página ser exibida
@@ -161,6 +160,7 @@ var app = new Framework7({
 		},
 		pageInit: function (event, page) {
 		// fazer algo quando a página for inicializada
+		$.getScript('js/crono.js')
 		function updateTimerAndTitle() {
 			var checkbox = document.getElementById('chk');
 			var timerDisplay = document.getElementById('timer');
