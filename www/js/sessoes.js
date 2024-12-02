@@ -166,8 +166,8 @@ function criar(){
                     db.transaction(function (tx) {
                         // Inserir entidades
                         tx.executeSql(
-                         'INSERT INTO sessoes (id_materia, titulo, data_inicio) VALUES (?, ?, ?)',
-                         [`${item.id_materia}`, `${titulo}`, `${data_criacao}`],
+                         'INSERT INTO sessoes (id_materia, titulo, data_inicio, pomodoro) VALUES (?, ?, ?, ?)',
+                         [`${item.id_materia}`, `${titulo}`, `${data_criacao}`, 25],
                          function (tx, res) {
 
                             tx.executeSql('SELECT * FROM sessoes WHERE id_materia = ?',[`${item.id_materia}`],
@@ -360,7 +360,7 @@ function editSes(sesId, ses_tit){
 function deleteSelectSes(){
     $("#Options-Buttons-sessions").empty();
     $("#Options-Buttons-sessions").append(`
-            <div onclick="inserirMat()" id="Cancel-Button" class="Delete-Button">
+            <div onclick="inserirSes()" id="Cancel-Button" class="Delete-Button">
                 <i class="mdi mdi-cancel"></i>
                 Cancelar
             </div>

@@ -22,7 +22,8 @@ p {
 
 .container{
   width: 280px;
-  margin-top: 25vw;
+  height: fit-content;
+  margin-top: 30vw;
   background-color: var(--branco);
   border-radius: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -116,6 +117,35 @@ h3 {
   color: var(--cinza_escuro);
 }
 
+.manage_btn{
+  display: flex;
+  flex-direction: row;
+  padding-left: 85px;
+}
+
+.manage-text{
+  display: flex;
+  flex-direction: row;
+  padding-left: 117px;
+}
+
+/* #btn_0{
+  padding-left: 7px;
+}
+
+#btn_1{
+  padding-top: 5px;
+  padding-left: 10px;
+}
+
+#btn_1-1{
+  padding-left: 10px;
+} */
+
+#btn_3{
+  padding-bottom: 5px;
+}
+
 .play-button {
   background-color: var(--vermelho);
   color: var(--branco);
@@ -123,8 +153,24 @@ h3 {
   border-radius: 50%;
   width: 65px;
   height: 65px;
-  padding: 20px;
+  margin-left: 30px;
   font-size: 23px;
+}
+
+#text_1{
+  margin-right: 28.63px;
+}
+
+#text_0{
+  margin-left: 7px;
+}
+
+#text_3{
+  margin-left: 2px;
+}
+
+.play-text{
+  margin-right: 40px;
 }
 
 .play-button:focus {

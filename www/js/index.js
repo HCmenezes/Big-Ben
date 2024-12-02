@@ -24,7 +24,7 @@ document.addEventListener('deviceready', function () {
     // Iniciar a transação Criar tabelas
     db.transaction(function (tx) {
         tx.executeSql(
-            'CREATE TABLE IF NOT EXISTS materias (id_materia INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, titulo TEXT NOT NULL, icon TEXT, tempo_materia REAL)',
+            'CREATE TABLE IF NOT EXISTS materias (id_materia INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, titulo TEXT NOT NULL, icon TEXT, tempo_materia TEXT)',
             [],
             function () {
                 console.log('Tabela criada com sucesso.');
@@ -35,7 +35,7 @@ document.addEventListener('deviceready', function () {
         );
 
         tx.executeSql(
-            'CREATE TABLE IF NOT EXISTS sessoes (id_sessao INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, id_materia INTEGER NOT NULL, titulo TEXT NOT NULL, data_inicio TEXT, tempo_sessao REAL, CONSTRAINT fk_materia_sessao FOREIGN KEY (id_materia) REFERENCES materias (id_materia) ON DELETE CASCADE)',
+            'CREATE TABLE IF NOT EXISTS sessoes (id_sessao INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, id_materia INTEGER NOT NULL, titulo TEXT NOT NULL, data_inicio TEXT, tempo_sessao TEXT, pomodoro REAL, CONSTRAINT fk_materia_sessao FOREIGN KEY (id_materia) REFERENCES materias (id_materia) ON DELETE CASCADE)',
             [],
             function () {
                 console.log('Tabela criada com sucesso.');
@@ -379,7 +379,7 @@ function getIcon(icone, titulo){
 };
 
 function criar(){
-    app.dialog.prompt('Escreva o nome do assunto', (titulo) => {
+    app.dialog.prompt('Digite o nome do assunto', (titulo) => {
         if(titulo == ""){
             app.dialog.alert("Digite um nome válido");
         } else{
@@ -473,7 +473,7 @@ function editMat(matId, mat_tit){
                 app.dialog.confirm(`Deseja mudar nome de ${mat_tit} para ${titulo}?`, () => {
                     db.transaction(function(tx) {
                         tx.executeSql('UPDATE materias SET titulo = ? WHERE id_materia = ?', [titulo, itemId], function(tx, res) {
-                            app.dialog.alert('Matéria alterada!!');
+                            app.dialog.alert('Livro alterado!!');
             
                             db.transaction(function (tx) {
                                 // Buscar dados da tabela
