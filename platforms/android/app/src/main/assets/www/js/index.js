@@ -16,12 +16,23 @@ function search_book() {
 
 // Criação do BD, tabelas e armazenamento no Local Storage
 var db;
-
 var materiaHTML;
 document.addEventListener('deviceready', function () {
     db = window.sqlitePlugin.openDatabase({ name: 'big_ben.db', location: 'default' });
 
     // Iniciar a transação Criar tabelas
+    // db.transaction(function (tx) {
+    //     tx.executeSql(
+    //         'CREATE TABLE IF NOT EXISTS alerts (id_materia INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, titulo TEXT NOT NULL, icon TEXT, tempo_materia TEXT)',
+    //         [],
+    //         function () {
+    //             console.log('Tabela criada com sucesso.');
+    //         },
+    //         function (tx, error) {
+    //             console.error('Erro ao criar tabela:', error.message);
+    //         }
+    //     );
+
     db.transaction(function (tx) {
         tx.executeSql(
             'CREATE TABLE IF NOT EXISTS materias (id_materia INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, titulo TEXT NOT NULL, icon TEXT, tempo_materia TEXT)',
@@ -68,85 +79,123 @@ document.addEventListener('deviceready', function () {
         );
     });
 
-    // Iniciar a transação Buscar dados das tabelas
-    db.transaction(function (tx){
-        tx.executeSql('SELECT * FROM materias',[],
-            function (tx, resultSet) {
-                let materias = [];
+// Iniciar a transação Buscar dados das tabelas
+db.transaction(function (tx){
+    tx.executeSql('SELECT * FROM materias',[],
+        function (tx, resultSet) {
+            let materias = [];
 
-                // Iterar pelos resultados
-                for (let i = 0; i < resultSet.rows.length; i++) {
-                    materias.push(resultSet.rows.item(i));
-                }
-
-                // Armazenar no LocalStorage
-                localStorage.setItem('materias', JSON.stringify(materias));
-                console.log('Dados armazenados no LocalStorage:', materias);
-            },
-            function (tx, error) {
-                console.error('Erro ao buscar dados:', error.message);
+            // Iterar pelos resultados
+            for (let i = 0; i < resultSet.rows.length; i++) {
+                materias.push(resultSet.rows.item(i));
             }
-        );
 
-        tx.executeSql('SELECT * FROM sessoes',[],
-            function (tx, resultSet) {
-                let sessoes = [];
+            // Armazenar no LocalStorage
+            localStorage.setItem('materias', JSON.stringify(materias));
+            console.log('Dados armazenados no LocalStorage:', materias);
+        },
+        function (tx, error) {
+            console.error('Erro ao buscar dados:', error.message);
+        }
+    );
 
-                // Iterar pelos resultados
-                for (let i = 0; i < resultSet.rows.length; i++) {
-                    sessoes.push(resultSet.rows.item(i));
-                }
+    tx.executeSql('SELECT * FROM sessoes',[],
+        function (tx, resultSet) {
+            let sessoes = [];
 
-                // Armazenar no LocalStorage
-                localStorage.setItem('sessoes', JSON.stringify(sessoes));
-                console.log('Dados armazenados no LocalStorage:', sessoes);
-            },
-            function (tx, error) {
-                console.error('Erro ao buscar dados:', error.message);
+            // Iterar pelos resultados
+            for (let i = 0; i < resultSet.rows.length; i++) {
+                sessoes.push(resultSet.rows.item(i));
             }
-        );
 
-        tx.executeSql('SELECT * FROM notas',[],
-            function (tx, resultSet) {
-                let notas = [];
+            // Armazenar no LocalStorage
+            localStorage.setItem('sessoes', JSON.stringify(sessoes));
+            console.log('Dados armazenados no LocalStorage:', sessoes);
+        },
+        function (tx, error) {
+            console.error('Erro ao buscar dados:', error.message);
+        }
+    );
 
-                // Iterar pelos resultados
-                for (let i = 0; i < resultSet.rows.length; i++) {
-                    notas.push(resultSet.rows.item(i));
-                }
+    tx.executeSql('SELECT * FROM notas',[],
+        function (tx, resultSet) {
+            let notas = [];
 
-                // Armazenar no LocalStorage
-                localStorage.setItem('notas', JSON.stringify(notas));
-                console.log('Dados armazenados no LocalStorage:', notas);
-            },
-            function (tx, error) {
-                console.error('Erro ao buscar dados:', error.message);
+            // Iterar pelos resultados
+            for (let i = 0; i < resultSet.rows.length; i++) {
+                notas.push(resultSet.rows.item(i));
             }
-        );
 
-        tx.executeSql('SELECT * FROM anexos',[],
-            function (tx, resultSet) {
-                let anexos = [];
+            // Armazenar no LocalStorage
+            localStorage.setItem('notas', JSON.stringify(notas));
+            console.log('Dados armazenados no LocalStorage:', notas);
+        },
+        function (tx, error) {
+            console.error('Erro ao buscar dados:', error.message);
+        }
+    );
 
-                // Iterar pelos resultados
-                for (let i = 0; i < resultSet.rows.length; i++) {
-                    anexos.push(resultSet.rows.item(i));
-                }
+    tx.executeSql('SELECT * FROM anexos',[],
+        function (tx, resultSet) {
+            let anexos = [];
 
-                // Armazenar no LocalStorage
-                localStorage.setItem('anexos', JSON.stringify(anexos));
-                console.log('Dados armazenados no LocalStorage:', anexos);
-            },
-            function (tx, error) {
-                console.error('Erro ao buscar dados:', error.message);
+            // Iterar pelos resultados
+            for (let i = 0; i < resultSet.rows.length; i++) {
+                anexos.push(resultSet.rows.item(i));
             }
-        );
-    });
+
+            // Armazenar no LocalStorage
+            localStorage.setItem('anexos', JSON.stringify(anexos));
+            console.log('Dados armazenados no LocalStorage:', anexos);
+        },
+        function (tx, error) {
+            console.error('Erro ao buscar dados:', error.message);
+        }
+    );
+});
 });
 
 // Inserção na página
 document.addEventListener('deviceready', function () {
     db = window.sqlitePlugin.openDatabase({ name: 'big_ben.db', location: 'default' });
+    // db.transaction(function (tx) {
+    //     // Inserir primeira entidade
+    //     tx.executeSql(
+    //         'INSERT INTO materias (titulo, icon, tempo_materia) VALUES (?, ?, ?)', 
+    //         ['Linguagem PHP', 'mdi mdi-language-php', 1.5],
+    //         function (tx, res) {
+    //             console.log('Entidade 1 inserida com ID:', res.insertId);
+    //         },
+    //         function (tx, error) {
+    //             console.error('Erro ao inserir entidade 1:', error.message);
+    //         }
+    //     );
+    
+    //     // Inserir segunda entidade
+    //     tx.executeSql(
+    //         'INSERT INTO materias (titulo, icon, tempo_materia) VALUES (?, ?, ?)', 
+    //         ['Linguagem C', 'mdi mdi-language-c', 8.25],
+    //         function (tx, res) {
+    //             console.log('Entidade 2 inserida com ID:', res.insertId);
+    //         },
+    //         function (tx, error) {
+    //             console.error('Erro ao inserir entidade 2:', error.message);
+    //         }
+    //     );
+    
+    //     // Inserir terceira entidade
+    //     tx.executeSql(
+    //         'INSERT INTO materias (titulo, icon, tempo_materia) VALUES (?, ?, ?)', 
+    //         ['Linguagem Java', 'mdi mdi-language-java', 5.75],
+    //         function (tx, res) {
+    //             console.log('Entidade 3 inserida com ID:', res.insertId);
+    //         },
+    //         function (tx, error) {
+    //             console.error('Erro ao inserir entidade 3:', error.message);
+    //         }
+    //     );
+    // });
+    
     // Iniciar a transação
     db.transaction(function (tx) {
         // Buscar dados da tabela
@@ -250,6 +299,10 @@ function inserirMat(){
                     materias.push(resultSet.rows.item(i));
                 }
                 
+                // Armazenar no LocalStorage
+                localStorage.setItem('materias', JSON.stringify(materias));
+                console.log('Dados armazenados no LocalStorage:', materias);
+
                 // Substituir o conteúdo
                 document.getElementById('src').placeholder = 'O que vamos estudar hoje?';
                 $(".block").empty();
@@ -286,96 +339,20 @@ var icone;
 
 function getIcon(icone, titulo){
     db = window.sqlitePlugin.openDatabase({ name: 'big_ben.db', location: 'default' });
-
-    app.dialog.alert(`Livro ${titulo} adicionado a biblioteca!`);
-
+    
     db.transaction(function (tx) {
         // Inserir entidades
         tx.executeSql(
          'INSERT INTO materias (titulo, icon) VALUES (?, ?)',
          [`${titulo}`, `${icone}`],
          function (tx, res) {
-             console.log('Entidade 1 inserida com ID:', res.insertId);
+             console.log('Matéria inserida com ID:', res.insertId);
          },
          function (tx, error) {
-             console.error('Erro ao inserir entidade 1:', error.message);
+             console.error('Erro ao inserir matéria:', error.message);
          }
-     )
-
-     tx.executeSql('SELECT * FROM materias',[],
-        function (tx, resultSet) {
-            let materias = [];
-
-            if (resultSet.rows.length === 0) {
-                // Substituir o conteúdo
-                document.getElementById('src').placeholder = 'O que vamos estudar hoje?';
-                $(".block").empty();
-                materiaHTML = `
-                    <i id="None_Books" class="mdi mdi-book-alert"></i>
-                    <h1 id="None_Books_text">Você ainda não possui livros em sua biblioteca</h1>
-                `;
-                $(".block").append(materiaHTML);
-            } else {
-            
-            // Iterar pelos resultados
-            for (let i = 0; i < resultSet.rows.length; i++) {
-                materias.push(resultSet.rows.item(i));
-            }
-
-            // Armazenar no LocalStorage
-            localStorage.setItem('materias', JSON.stringify(materias));
-            console.log('Dados armazenados no LocalStorage:', materias);
-            
-            // Substituir o conteúdo
-            document.getElementById('src').placeholder = 'O que vamos estudar hoje?';
-            $(".Options-Buttons").empty();
-            $(".Options-Buttons").append(`
-            <a href="">
-                <div  onclick="criar()" class="Create-Button">
-                    <i class="mdi mdi-book-plus"></i>
-                    Novo
-                </div>
-            </a>
-            <a href="">
-                <div onclick="editSelectMat()" class="Edit-Button">
-                    <i class="mdi mdi-book-edit"></i>
-                    Editar
-                </div>
-            </a>
-            <a href="">
-                <div onclick="deleteSelectMat()" class="Delete-Button">
-                    <i class="mdi mdi-book-minus"></i>
-                    Apagar
-                </div>
-            </a>
-            `);
-
-            $(".block").empty();
-            materias.forEach(materia =>{
-                materiaHTML = `
-                    <a href="#">
-                        <div data-id="${materia.id_materia}" class="buttom">
-                            <i class="${materia.icon}"></i>
-                            ${materia.titulo}
-                        </div>
-                    </a>
-                `;
-                $(".block").append(materiaHTML);
-            });
-
-            $(".buttom").on('click', function(){
-                var id = $(this).attr('data-id');
-                localStorage.setItem('sessao', id);
-                app.views.main.router.navigate("/sessoes/")
-
-            })
-        }
-        },
-        function (tx, error) {
-            console.error('Erro ao buscar dados:', error.message);
-        }
-    );
-    });
+     )});
+     inserirMat();
 };
 
 function criar(){
@@ -383,7 +360,6 @@ function criar(){
         if(titulo == ""){
             app.dialog.alert("Digite um nome válido");
         } else{
-            app.dialog.confirm(`Deseja adicionar ${titulo} como assunto do livro?`, () => {
                 $(".Options-Buttons").empty();
                 $(".Options-Buttons").append(`
                         <div onclick="inserirMat()" id="Cancel-Button" class="Delete-Button">
@@ -430,8 +406,6 @@ function criar(){
                     $(".block").append(materiaHTML);
                     $(".buttom").hide();
                     $(".buttom").fadeIn();
-                    app.dialog.alert(`Quase pronto, agora selecione o ícone para enfeitar a capa do seu livro!`);
-            });
         }
       });
 }
@@ -470,91 +444,16 @@ function editMat(matId, mat_tit){
             if(titulo == ""){
                 app.dialog.alert("Digite um nome válido");
             } else{
-                app.dialog.confirm(`Deseja mudar nome de ${mat_tit} para ${titulo}?`, () => {
-                    db.transaction(function(tx) {
-                        tx.executeSql('UPDATE materias SET titulo = ? WHERE id_materia = ?', [titulo, itemId], function(tx, res) {
-                            app.dialog.alert('Livro alterado!!');
-            
-                            db.transaction(function (tx) {
-                                // Buscar dados da tabela
-                                tx.executeSql('SELECT * FROM materias',[],
-                                    function (tx, resultSet) {
-                                        let materias = [];
-                        
-                                        if (resultSet.rows.length === 0) {
-                                            document.getElementById('src').placeholder = 'O que vamos estudar hoje?';
-                                            // Substituir o conteúdo
-                                            $(".block").empty();
-                                            materiaHTML = `
-                                                <i id="None_Books" class="mdi mdi-book-alert"></i>
-                                                <h1 id="None_Books_text">Você ainda não possui livros em sua biblioteca</h1>
-                                            `;
-                                            $(".block").append(materiaHTML);
-                                        } else {
-                                        
-                                        // Iterar pelos resultados
-                                        for (let i = 0; i < resultSet.rows.length; i++) {
-                                            materias.push(resultSet.rows.item(i));
-                                        }
-                        
-                                        // Armazenar no LocalStorage
-                                        localStorage.setItem('materias', JSON.stringify(materias));
-                                        console.log('Dados armazenados no LocalStorage:', materias);
-                                        
-                                        document.getElementById('src').placeholder = 'O que vamos estudar hoje?';
-                                        $(".Options-Buttons").empty();
-                                        $(".Options-Buttons").append(`
-                                        <a href="">
-                                            <div  onclick="criar()" class="Create-Button">
-                                                <i class="mdi mdi-book-plus"></i>
-                                                Novo
-                                            </div>
-                                        </a>
-                                        <a href="">
-                                            <div onclick="editSelectMat()" class="Edit-Button">
-                                                <i class="mdi mdi-book-edit"></i>
-                                                Editar
-                                            </div>
-                                        </a>
-                                        <a href="">
-                                            <div onclick="deleteSelectMat()" class="Delete-Button">
-                                                <i class="mdi mdi-book-minus"></i>
-                                                Apagar
-                                            </div>
-                                        </a>
-                                        `);
-                                        // Substituir o conteúdo
-                                        $(".block").empty();
-                                        materias.forEach(materia =>{
-                                            materiaHTML = `
-                                                <a href="#">
-                                                    <div data-id="${materia.id_materia}" class="buttom">
-                                                        <i class="${materia.icon}"></i>
-                                                        ${materia.titulo}
-                                                    </div>
-                                                </a>
-                                            `;
-                                            $(".block").append(materiaHTML);
-                                        });
-                        
-                                        $(".buttom").on('click', function(){
-                                            var id = $(this).attr('data-id');
-                                            localStorage.setItem('sessao', id);
-                                            app.views.main.router.navigate("/sessoes/")
-                        
-                                        })
-                                    }
-                                    },
-                                    function (tx, error) {
-                                        console.error('Erro ao buscar dados:', error.message);
-                                    }
-                                );
-                            });
-                        }, function(tx, error) {
-                            app.dialog.alert('Erro ao deletar a Matéria: ', error.message);
-                        });
+                db.transaction(function(tx) {
+                    tx.executeSql('UPDATE materias SET titulo = ? WHERE id_materia = ?', [titulo, itemId],
+                    function (tx, res) {
+                        console.log('Matéria alterada com ID:', res.insertId);
+                    },     
+                    function(tx, error) {
+                        app.dialog.alert('Erro ao editar a Matéria: ', error.message);
                     });
                 });
+                inserirMat();
             }
         });
 }
@@ -590,88 +489,13 @@ function deleteMat(matId, mat_tit){
     var itemId = matId;
     var itemTit = mat_tit;
         app.dialog.confirm(`Deseja Realmente apagar o livro ${itemTit}?`, () => {
-
             db.transaction(function(tx) {
                 tx.executeSql('DELETE FROM materias WHERE id_materia = ?', [itemId], function(tx, res) {
                     app.dialog.alert('Livro retirado da biblioteca!!');
-    
-                    db.transaction(function (tx) {
-                        // Buscar dados da tabela
-                        tx.executeSql('SELECT * FROM materias',[],
-                            function (tx, resultSet) {
-                                let materias = [];
-                
-                                if (resultSet.rows.length === 0) {
-                                    document.getElementById('src').placeholder = 'O que vamos estudar hoje?';
-                                    // Substituir o conteúdo
-                                    $(".block").empty();
-                                    materiaHTML = `
-                                        <i id="None_Books" class="mdi mdi-book-alert"></i>
-                                        <h1 id="None_Books_text">Você ainda não possui livros em sua biblioteca</h1>
-                                    `;
-                                    $(".block").append(materiaHTML);
-                                } else {
-                                
-                                // Iterar pelos resultados
-                                for (let i = 0; i < resultSet.rows.length; i++) {
-                                    materias.push(resultSet.rows.item(i));
-                                }
-                
-                                // Armazenar no LocalStorage
-                                localStorage.setItem('materias', JSON.stringify(materias));
-                                console.log('Dados armazenados no LocalStorage:', materias);
-                                
-                                document.getElementById('src').placeholder = 'O que vamos estudar hoje?';
-                                $(".Options-Buttons").empty();
-                                $(".Options-Buttons").append(`
-                                <a href="">
-                                    <div  onclick="criar()" class="Create-Button">
-                                        <i class="mdi mdi-book-plus"></i>
-                                        Novo
-                                    </div>
-                                </a>
-                                <a href="">
-                                    <div onclick="editSelectMat()" class="Edit-Button">
-                                        <i class="mdi mdi-book-edit"></i>
-                                        Editar
-                                    </div>
-                                </a>
-                                <a href="">
-                                    <div onclick="deleteSelectMat()" class="Delete-Button">
-                                        <i class="mdi mdi-book-minus"></i>
-                                        Apagar
-                                    </div>
-                                </a>
-                                `);
-                                // Substituir o conteúdo
-                                $(".block").empty();
-                                materias.forEach(materia =>{
-                                    materiaHTML = `
-                                        <a href="#">
-                                            <div data-id="${materia.id_materia}" class="buttom">
-                                                <i class="${materia.icon}"></i>
-                                                ${materia.titulo}
-                                            </div>
-                                        </a>
-                                    `;
-                                    $(".block").append(materiaHTML);
-                                });
-                
-                                $(".buttom").on('click', function(){
-                                    var id = $(this).attr('data-id');
-                                    localStorage.setItem('sessao', id);
-                                    app.views.main.router.navigate("/sessoes/")
-                
-                                })
-                            }
-                            },
-                            function (tx, error) {
-                                console.error('Erro ao buscar dados:', error.message);
-                            }
-                        );
-                    });
+                    inserirMat();
                 }, function(tx, error) {
                     app.dialog.alert('Erro ao deletar a Matéria: ', error.message);
+                    inserirMat();
                 });
             });
         });

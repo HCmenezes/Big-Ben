@@ -31,7 +31,6 @@ var app = new Framework7({
 		},
 		pageInit: function (event, page) {
 		// fazer algo quando a página for inicializada
-		// app.views.main.router.navigate("/cronometro/")
 		},
 		pageBeforeRemove: function (event, page) {
 		// fazer algo antes da página ser removida do DOM
@@ -47,52 +46,15 @@ var app = new Framework7({
 	  on: {
 		pageBeforeIn: function (event, page) {
 		// fazer algo antes da página ser exibida
-    	$("#menu-principal").slideDown("fast")
+		
 		},
 		pageAfterIn: function (event, page) {
 		// fazer algo depois da página ser exibida
+		$.getScript('js/relatorios.js')
 		},
 		pageInit: function (event, page) {
 		// fazer algo quando a página for inicializada
-		const ctx = document.getElementById('myChart').getContext('2d');
-			const myChart = new Chart(ctx, {
-				type: 'bar',
-				data: {
-					labels: ['Matéria1', 'Matéria2', 'Matéria3', 'Matéria4'],
-					datasets: [{
-						label: 'Horas estudadas',
-						
-						data: [10, 20, 15, 25, 30], // Exemplo de valores para cada matéria
-						backgroundColor: [
-							'#ec4c47',
-						],
-						borderWidth: 0
-					}]
-				},
-				options: {
-					responsive: true,
-					indexAxis: 'y',
-					scales: {
-						x: {
-							beginAtZero: true,
-							ticks: {
-							padding: 20 // Distância dos índices em relação ao eixo X
-							},
-							grid: {
-							display: false // Esconde a linha de grid para um efeito visual mais limpo
-							}
-						},
-						y: {
-							beginAtZero: true
-						}
-						},
-					plugins: {
-						legend: {
-							position: 'top',
-						},
-					},
-				}
-			});
+		$.getScript('js/relatorios.js')
 		},
 		pageBeforeRemove: function (event, page) {
 		// fazer algo antes da página ser removida do DOM
@@ -176,13 +138,14 @@ var app = new Framework7({
 		on: {
 		  pageBeforeIn: function (event, page) {
 		  // fazer algo antes da página ser exibida
-	  $("#menu-principal").slideUp("fast")
+	  	  $("#menu-principal").slideUp("fast")
 		  },
 		  pageAfterIn: function (event, page) {
 		  // fazer algo depois da página ser exibida
 		  },
 		  pageInit: function (event, page) {
 		  // fazer algo quando a página for inicializada
+		  $.getScript('js/bloco_notas.js')
 		  },
 		  pageBeforeRemove: function (event, page) {
 		  // fazer algo antes da página ser removida do DOM
@@ -198,19 +161,14 @@ var app = new Framework7({
 	  on: {
 		pageBeforeIn: function (event, page) {
 		// fazer algo antes da página ser exibida
-    $("#menu-principal").slideUp("fast")
+    	$("#menu-principal").slideUp("fast")
 		},
 		pageAfterIn: function (event, page) {
 		// fazer algo depois da página ser exibida
 		},
 		pageInit: function (event, page) {
 		// fazer algo quando a página for inicializada
-		var editor = app.textEditor.create({
-			el: '.text-editor',
-			mode: 'toolbar',
-			buttons: [["bold", "italic", "underline", "strikeThrough"], ["orderedList", "unorderedList"]], // Botões disponíveis
-			placeholder: 'Escreva suas notas aqui...',
-		 });
+		$.getScript('js/notas.js')
 		},
 		pageBeforeRemove: function (event, page) {
 		// fazer algo antes da página ser removida do DOM
@@ -246,7 +204,7 @@ var app = new Framework7({
 	  on: {
 		pageBeforeIn: function (event, page) {
 		// fazer algo antes da página ser exibida
-    $("#menu-principal").slideUp("fast")
+    	$("#menu-principal").slideUp("fast")
 		},
 		pageAfterIn: function (event, page) {
 		// fazer algo depois da página ser exibida
@@ -268,7 +226,7 @@ var app = new Framework7({
 	  on: {
 		pageBeforeIn: function (event, page) {
 		// fazer algo antes da página ser exibida
-    $("#menu-principal").slideUp("fast")
+    	$("#menu-principal").slideUp("fast")
 		},
 		pageAfterIn: function (event, page) {
 		// fazer algo depois da página ser exibida
@@ -278,6 +236,8 @@ var app = new Framework7({
 		},
 		pageBeforeRemove: function (event, page) {
 		// fazer algo antes da página ser removida do DOM
+		$.getScript('js/notas.js');
+		var db = window.sqlitePlugin.openDatabase({ name: 'big_ben.db', location: 'default' });
 		},
 	  }
     },
@@ -290,7 +250,7 @@ var app = new Framework7({
 	  on: {
 		pageBeforeIn: function (event, page) {
 		// fazer algo antes da página ser exibida
-    $("#menu-principal").slideUp("fast")
+    	$("#menu-principal").slideUp("fast")
 		},
 		pageAfterIn: function (event, page) {
 		// fazer algo depois da página ser exibida
@@ -327,7 +287,7 @@ app.on('routeChange', function (route) {
 
 function onDeviceReady() {
   //Quando estiver rodando no celular
-  var mainView = app.views.create('.view-main', { url: '/index/' });
+  var mainView = app.views.create('.view-main', { url: '/index/' });  
 
   //COMANDO PARA "OUVIR" O BOTAO VOLTAR NATIVO DO ANDROID 	
   document.addEventListener("backbutton", function (e) {
@@ -338,8 +298,28 @@ function onDeviceReady() {
         navigator.app.exitApp();
       });
     } else {
+		if (mainView.router.currentRoute.path === '/nota/') {
+			e.preventDefault();
+			// Recuperar o ID do localStorage
+			var id = parseInt(localStorage.getItem('nota'));
+
+			//Pegar o titulo do local Storage
+			var notas = JSON.parse(localStorage.getItem('notas'));
+			var itemN = notas.find( nota => nota.id_nota === id);
+			var db_init = window.sqlitePlugin.openDatabase({ name: 'big_ben.db', location: 'default' });
+			var nota_content = document.getElementById("editor-content").innerHTML;
+			var dataAtual = new Date();
+
+			db_init.transaction(function (tx) {
+				// Inserir entidades
+				tx.executeSql('UPDATE notas SET conteudo = ?, modificacao = ? WHERE id_nota = ?', [`${nota_content}`,`${dataAtual.toLocaleDateString()}` , `${itemN.id_nota}`]);
+			});
+			app.dialog.alert(`${dataAt}`)
+			app.views.main.router.navigate("/bloco_notas/");
+		} else {
       e.preventDefault();
       mainView.router.back({ force: true });
+		}
     }
   }, false);
 

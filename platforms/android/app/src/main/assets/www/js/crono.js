@@ -7,7 +7,13 @@ var item = sessoes.find( sessao => sessao.id_sessao === id);
 
 $(".title").text(item.titulo);
 
-// CRONO
+$("#nota_btn").on('click', function(){
+    var id = item.id_sessao;
+    localStorage.setItem('bloco', id);
+    app.views.main.router.navigate("/bloco_notas/")
+})
+
+// Cronômetro
 var db
 var cronoHTML;
 
@@ -58,6 +64,7 @@ document.getElementById('timer').addEventListener('click', function(){
 })
 
 function start() {
+    timer();
     cron = setInterval(() => { timer(); }, tempo);
 
     $("#btn_1").remove();
@@ -214,7 +221,7 @@ function stop() {
     if (check == 1) {
         document.getElementById('timer').innerText = `${String(pomo).padStart(2, '0')}:00`;
     } else {
-        document.getElementById('timer').innerText = '00:00:00'
+        document.getElementById('timer').innerText = '00:00:00';
     }
 
     //Frontend

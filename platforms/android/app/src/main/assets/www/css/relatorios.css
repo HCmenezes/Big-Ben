@@ -1,0 +1,26 @@
+.grafico-container{
+    height: fit-content;
+    margin-top: 20vw;
+    margin-bottom: 2.7vw;
+    background-color: rgb(247, 247, 247);
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.342);
+    padding: 20px;
+    text-align: center;
+    margin-left: 2.7vw;
+    margin-right: 2.7vw;
+    color: var(--preto);
+}
+
+#mat-relat{
+    text-align: center;
+}
+
+#mat-relat-detail{
+    color:var(--preto_cinza);
+}
+
+#page-content-relat{
+    padding: 0;
+    height: 32%;
+}
